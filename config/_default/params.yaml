@@ -6,7 +6,7 @@
 # Appearance
 appearance:
   mode: system
-  color: emerald
+  color: blue
 
 # SEO
 marketing:
@@ -14,10 +14,10 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
-    twitter: 'GetResearchDev'
+    description: 'Chenhao Li - Doctoral Fellow at ETH AI Center.'
+    twitter: 'breadli428'
   analytics:
-    google_analytics: ''
+    google_analytics: 'G-M5DNVKG5CM'
     baidu_tongji: ''
     plausible: ''
     fathom: ''
@@ -35,7 +35,7 @@ header:
     show_search: true
     show_theme_chooser: true
     logo:
-      text: "Your Name"
+      text: "Chenhao Li"
 
 # Site footer
 footer:
