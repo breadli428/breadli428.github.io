@@ -1,5 +1,5 @@
 ---
-title: 'Offline Robotic World Model: Learning Robotic Policies without a Physics Simulator'
+title: 'Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
@@ -15,7 +15,7 @@ author_notes:
   - 'Learning & Adaptive Systems Group, ETH Zurich, Switzerland'
   - 'Robotic Systems Lab, ETH Zurich, Switzerland'
 
-date: '2025-04-30T00:00:00Z'
+date: '2025-05-15T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
@@ -27,13 +27,13 @@ publishDate: '2017-01-01T00:00:00Z'
 publication_types: ['paper-conference']
 
 # Publication name and optional abbreviated publication name.
-publication: In *arXiv*
+publication: 'In *arXiv*'
 publication_short: In *arXiv*
 
-abstract: Reinforcement Learning (RL) has demonstrated impressive capabilities in robotic control but remains challenging due to high sample complexity, safety concerns, and the sim-to-real gap. While offline RL eliminates the need for risky real-world exploration by learning from pre-collected data, it suffers from distributional shift, limiting policy generalization. Model-Based RL (MBRL) addresses this by leveraging predictive models for synthetic rollouts, yet existing approaches often lack robust uncertainty estimation, leading to compounding errors in offline settings. We introduce Offline Robotic World Model (RWM-O), a model-based approach that explicitly estimates epistemic uncertainty to improve policy learning without reliance on a physics simulator. By integrating these uncertainty estimates into policy optimization, our approach penalizes unreliable transitions, reducing overfitting to model errors and enhancing stability. Experimental results show that RWM-O improves generalization and safety, enabling policy learning purely from real-world data and advancing scalable, data-efficient RL for robotics.
+abstract: Learning robust and generalizable world models is crucial for enabling efficient and scalable robotic control in real-world environments. In this work, we introduce a novel framework for learning world models that accurately capture complex, partially observable, and stochastic dynamics. The proposed method employs a dual-autoregressive mechanism and self-supervised training to achieve reliable long-horizon predictions without relying on domain-specific inductive biases, ensuring adaptability across diverse robotic tasks. We further propose a policy optimization framework that leverages world models for efficient training in imagined environments and seamless deployment in real-world systems. Through extensive experiments, our approach consistently outperforms state-of-the-art methods, demonstrating superior autoregressive prediction accuracy, robustness to noise, and generalization across manipulation and locomotion tasks. Notably, policies trained with our method are successfully deployed on ANYmal D hardware in a zero-shot transfer, achieving robust performance with minimal sim-to-real performance loss. This work advances model-based reinforcement learning by addressing the challenges of long-horizon prediction, error accumulation, and sim-to-real transfer. By providing a scalable and robust framework, the introduced methods pave the way for adaptive and efficient robotic systems in real-world applications.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics from offline data.
+summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics.
 
 # tags:
 #   - Large Language Models
@@ -46,7 +46,7 @@ featured: true
 # - name: Custom Link
 #   url: http://example.org
 
-url_pdf: 'https://arxiv.org/abs/2504.16680'
+url_pdf: 'https://arxiv.org/abs/2501.10100'
 url_code: ''
 url_dataset: ''
 url_poster: ''
@@ -58,7 +58,7 @@ url_video: ''
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Offline Robotic World Model'
+  caption: 'Robotic World Model'
   focal_point: ''
   preview_only: false
 

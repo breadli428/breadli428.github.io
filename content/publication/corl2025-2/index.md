@@ -1,21 +1,25 @@
 ---
-title: 'Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics'
+title: 'Toward Task Generalization via Memory Augmentation in Meta-Reinforcement Learning'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
 # and it will be replaced with their full name and linked to their profile.
 authors:
+  - Kaixi Bao
   - admin
+  - Yarden As
   - Andreas Krause
   - Marco Hutter
 
 # Author notes (optional)
 author_notes:
+  - 'Robotic Systems Lab, ETH Zurich, Switzerland'
+  - 'ETH AI Center, Switzerland'
   - 'ETH AI Center, Switzerland'
   - 'Learning & Adaptive Systems Group, ETH Zurich, Switzerland'
   - 'Robotic Systems Lab, ETH Zurich, Switzerland'
 
-date: '2025-01-15T00:00:00Z'
+date: '2025-04-25T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
@@ -27,13 +31,13 @@ publishDate: '2017-01-01T00:00:00Z'
 publication_types: ['paper-conference']
 
 # Publication name and optional abbreviated publication name.
-publication: 'In *Robotics: Science and Systems*'
-publication_short: In *RSS*
+publication: In *arXiv*
+publication_short: In *arXiv*
 
-abstract: Learning robust and generalizable world models is crucial for enabling efficient and scalable robotic control in real-world environments. In this work, we introduce a novel framework for learning world models that accurately capture complex, partially observable, and stochastic dynamics. The proposed method employs a dual-autoregressive mechanism and self-supervised training to achieve reliable long-horizon predictions without relying on domain-specific inductive biases, ensuring adaptability across diverse robotic tasks. We further propose a policy optimization framework that leverages world models for efficient training in imagined environments and seamless deployment in real-world systems. Through extensive experiments, our approach consistently outperforms state-of-the-art methods, demonstrating superior autoregressive prediction accuracy, robustness to noise, and generalization across manipulation and locomotion tasks. Notably, policies trained with our method are successfully deployed on ANYmal D hardware in a zero-shot transfer, achieving robust performance with minimal sim-to-real performance loss. This work advances model-based reinforcement learning by addressing the challenges of long-horizon prediction, error accumulation, and sim-to-real transfer. By providing a scalable and robust framework, the introduced methods pave the way for adaptive and efficient robotic systems in real-world applications.
+abstract: In reinforcement learning (RL), agents often struggle to perform well on tasks that differ from those encountered during training. This limitation presents a challenge to the broader deployment of RL in diverse and dynamic task settings. In this work, we introduce memory augmentation, a memory-based RL approach to improve task generalization. Our approach leverages task-structured augmentations to simulate plausible out-of-distribution scenarios and incorporates memory mechanisms to enable context-aware policy adaptation. Trained on a predefined set of tasks, our policy demonstrates the ability to generalize to unseen tasks through memory augmentation without requiring additional interactions with the environment. Through extensive simulation experiments and real-world hardware evaluations on legged locomotion tasks, we demonstrate that our approach achieves zero-shot generalization to unseen tasks while maintaining robust in-distribution performance and high sample efficiency.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics.
+summary: In this work, we propose a memory-enhanced meta-reinforcement learning method that extends OOD generalization for RL agents.
 
 # tags:
 #   - Large Language Models
@@ -46,7 +50,7 @@ featured: true
 # - name: Custom Link
 #   url: http://example.org
 
-url_pdf: 'https://arxiv.org/abs/2501.10100'
+url_pdf: 'https://arxiv.org/abs/2502.01521'
 url_code: ''
 url_dataset: ''
 url_poster: ''
@@ -58,7 +62,7 @@ url_video: ''
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Robotic World Model'
+  caption: 'Memory-Augmented Meta-RL'
   focal_point: ''
   preview_only: false
 
