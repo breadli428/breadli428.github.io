@@ -478,17 +478,17 @@ sections:
       date_format: 'January 2006'
       # Education or Experience section first?
       is_education_first: false
-  - block: collection
-    id: posts
-    content:
-      title: Posts
-      count: 0
-      filters:
-        folders:
-          - post
-    design:
-      view: article-grid
-      columns: 2
+  # - block: collection
+  #   id: posts
+  #   content:
+  #     title: Posts
+  #     count: 0
+  #     filters:
+  #       folders:
+  #         - post
+  #   design:
+  #     view: article-grid
+  #     columns: 2
   - block: collection
     id: talks
     content:
