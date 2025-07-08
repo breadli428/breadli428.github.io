@@ -19,9 +19,10 @@ url_pdf: 'tbd'
 tags: []
 ---
 
-### Acknowledgements
+{{% callout note %}}
 This survey was proofread by [Zhiyang Dou](https://frank-zy-dou.github.io/), [Tairan He](https://tairanhe.com/), [Xuxin Cheng](https://chengxuxin.github.io/), [Zhengyi Luo](https://www.zhengyiluo.com/), and [Chen Tessler](http://chen.tessler.tilda.ws/).
 Their expertise in the field and constructive suggestions were instrumental in shaping the final form of this work.
+{{% /callout %}}
 
 
 ## Disclaimer
@@ -32,8 +33,10 @@ Terms such as *imitation learning*, *learning from demonstrations*, and *demonst
 In this survey, we adopt the term **learning from demonstrations** to specifically denote a class of methods that utilize *state-based*, *offline reference data* to derive a **reward signal**.
 This reward signal quantifies the similarity between the behavior of a learning agent and that of the reference trajectories, and it is used to guide policy optimization.
 
+{{% callout warning %}}
 This definition intentionally excludes methods based on **behavior cloning** that require **action annotations**, such as those used in recent large-scale manipulation datasets (e.g., [Gr00t N1](https://arxiv.org/pdf/2503.14734), [diffusion policy](https://journals.sagepub.com/doi/pdf/10.1177/02783649241273668), [Gemini Robotics](https://arxiv.org/pdf/2503.20020)).
 These approaches assume access to expert action labels and thus follow a different paradigm than the class of methods discussed here, which operate solely on state observations and rely on RL to generate control.
+{{% /callout %}}
 
 
 ## Motivation and Scope
@@ -52,23 +55,16 @@ By articulating the trade-offs involved—including scalability, stability, gene
 
 ## Physics-Based Control, States and Actions
 
-In both character animation and robotics, physics-based control refers to the use of simulated or real-world dynamics to determine how an agent moves.
-Rather than prescribing poses or joint angles directly, we define objectives (typically through a cost or reward function) and allow the agent to discover control signals, usually torques or forces, that achieve those objectives within the constraints of physical dynamics.
-This contrasts with keyframe-based animation or kinematic methods in robotics, where motions are either handcrafted or interpolated without physical realism.
-Physics-based control ensures that behaviors are dynamically feasible, energy-consistent, and responsive to the environment—qualities that are essential for tasks like locomotion, balance, or manipulation in uncertain or dynamic settings.
-
-Central to this paradigm is the Markov Decision Process (MDP) abstraction, where the policy maps states to actions.
-In this context, states typically encode the physical configuration and motion of the agent (e.g., joint positions, velocities, root orientation) and may include external context such as terrain information, object poses, or task-specific cues.
-Actions correspond to control signals sent to the system, most commonly joint torques, desired joint targets in a PD controller, or muscle activations in biomechanical models.
-
 In both character animation and robotics, **physics-based control** refers to a paradigm in which an agent's behavior is governed by the underlying physical dynamics of the system, either simulated or real.
 Rather than prescribing trajectories explicitly, such as joint angles or end-effector poses, this approach formulates control as a process of goal-directed optimization, where a policy generates **control signals** (e.g., torques or muscle activations) to maximize an objective function under physical constraints.
 This stands in contrast to **kinematics-based** or **keyframe-based** methods, which often disregard dynamics and focus on geometrically feasible but potentially physically implausible motions.
 Physics-based control ensures that resulting behaviors are not only kinematically valid but also **dynamically consistent**, energy-conservative, and responsive to interaction forces, making it particularly suited for tasks involving locomotion, balance, and physical interaction in uncertain or dynamic environments.
 
+{{% callout note %}}
 The canonical formalism for this control paradigm is the **Markov Decision Process (MDP)**, defined by a tuple $\left (\mathcal{S}, \mathcal{A}, T, R, \gamma \right )$, where $\mathcal{S}$ and $\mathcal{A}$ denote the state and action spaces, respectively.
 The transition kernel $T: \mathcal{S} \times \mathcal{A} \to \mathcal{S}$ captures the environment dynamics $p \left (s_{t+1} \mid s_t, a_t \right )$, while the reward function $R: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to \mathbb{R}$ maps transitions to scalar rewards.
 The agent seeks to learn a policy $\pi_\theta: \mathcal{S} \to \mathcal{A}$ that maximizes the expected discounted return $\mathbb{E}_{\pi_\theta} \left[\sum_{t \geq 0} \gamma^t r_t\right]$, where $r_t$ is the reward at time $t$ and $\gamma \in \left [0, 1 \right ]$ is the discount factor.
+{{% /callout %}}
 
 In this context, the state $s \in \mathcal{S}$ typically encodes the agent's physical configuration and dynamics, such as joint positions, joint velocities, root orientation, and may include exteroceptive inputs like terrain geometry or object pose.
 The action $a \in \mathcal{A}$ corresponds to the control input applied to the system, most commonly joint torques in torque-controlled settings, or target positions in PD-controlled systems.
@@ -86,9 +82,10 @@ Critically, the reward derived from demonstrations may serve either as a **pure 
 This dual role makes demonstration-based rewards particularly valuable in high-dimensional control problems where exploration is difficult and task-based rewards are sparse or poorly shaped.
 As such, learning from demonstrations transforms the design of the reward function from a manual engineering problem into one of defining or learning an appropriate similarity metric between agent and expert behavior, either explicitly, through features, or implicitly, through discriminators or encoders.
 
-Before reviewing specific methods, it is important to clarify a key motivation for incorporating demonstrations into the learning process.
+{{% callout note %}}
 While reference trajectories are often valued for their visual realism or naturalness, this perspective underemphasizes their **algorithmic utility**: reference data serves as a critical mechanism for improving **learning efficiency** in high-dimensional control problems.
 Rather than functioning merely as a constraint or prior, demonstrations provide **structured guidance** that biases policy exploration toward plausible and meaningful behaviors.
+{{% /callout %}}
 
 This role becomes especially important as the complexity of the environment and agent increases.
 In lower-dimensional settings, [carefully engineered reward functions or manually designed curricula](https://proceedings.mlr.press/v164/rudin22a/rudin22a.pdf) have proven sufficient to elicit sophisticated behaviors through reinforcement learning alone.
@@ -103,6 +100,8 @@ This reframing justifies the use of demonstrations not only for imitation but as
 Feature-based imitation approaches can be traced back to [DeepMimic](https://dl.acm.org/doi/pdf/10.1145/3197517.3201311), which established a now-standard formulation for constructing reward signals based on explicit motion matching.
 In this framework, the policy is aligned with a reference trajectory by introducing a **phase variable**, which serves as a learned proxy for temporal progress through the motion.
 The reward is computed by evaluating feature-wise distances—such as joint positions, velocities, orientations, and end-effector positions—between the policy-generated trajectory and the reference, synchronized via the phase.
+
+![screen reader text](featured.png "caption")
 
 \begin{figure}
     \centering
