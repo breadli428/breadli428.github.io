@@ -299,11 +299,13 @@ Their strong reliance on explicit tracking and dense supervision can make them b
 
 ## On Metrics and Misconceptions
 
+{{% callout warning %}}
 In evaluating learning from demonstration algorithms, it is common practice to reference metrics such as *motion naturalness*, *energy efficiency*, or *cost of transport*.
 While these properties are intuitively appealing, they can be misleading indicators of algorithmic performance.
 Crucially, such metrics are not inherent to the learning algorithm itself but are instead highly dependent on the quality and structure of the reference data.
 For instance, if a policy trained via a particular algorithm exhibits smoother or more energy-efficient behavior, this outcome often reflects characteristics of the underlying demonstrations rather than advantages intrinsic to the algorithmic formulation.
 Consequently, attributing these observed properties to the learning method risks conflating algorithmic capability with dataset bias.
+{{% /callout %}}
 
 Moreover, these high-level metrics offer limited diagnostic value when comparing algorithm classes.
 They do not capture fundamental differences in reward design, training stability, scalability, or generalization capacity.
@@ -415,8 +417,10 @@ It is important to recognize that **many problems commonly attributed to one par
 For instance, mode collapse in GANs mirrors the brittleness of poor motion representations in feature-based methods.
 Similarly, while feature-based methods offer strong guidance for motion tracking, they may fail to generalize or adapt when rigid reward definitions are misaligned with auxiliary tasks or dynamic environments.
 
+{{% callout note %}}
 Rather than presenting these two paradigms as mutually exclusive, recent trends point toward a **convergent perspective**, one that emphasizes the centrality of structured motion representations.
 Whether derived from self-supervised learning, latent encodings, or manually designed summaries, these representations serve as a bridge between the strengths of each approach: the interpretability and controllability of explicit rewards and the scalability and adaptability of adversarial training.
+{{% /callout %}}
 
 Ultimately, the decision between using a feature-based or GAN-based approach is not a question of universal superiority.
 Instead, it should be guided by the **specific constraints and priorities of the application**: fidelity versus diversity, interpretability versus flexibility, or training simplicity versus large-scale generalization.
