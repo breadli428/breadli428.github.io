@@ -82,7 +82,7 @@ Critically, the reward derived from demonstrations may serve either as a **pure 
 This dual role makes demonstration-based rewards particularly valuable in high-dimensional control problems where exploration is difficult and task-based rewards are sparse or poorly shaped.
 As such, learning from demonstrations transforms the design of the reward function from a manual engineering problem into one of defining or learning an appropriate similarity metric between agent and expert behavior, either explicitly, through features, or implicitly, through discriminators or encoders.
 
-{{% callout note %}}
+{{% callout warning %}}
 While reference trajectories are often valued for their visual realism or naturalness, this perspective underemphasizes their **algorithmic utility**: reference data serves as a critical mechanism for improving **learning efficiency** in high-dimensional control problems.
 Rather than functioning merely as a constraint or prior, demonstrations provide **structured guidance** that biases policy exploration toward plausible and meaningful behaviors.
 {{% /callout %}}
@@ -101,14 +101,7 @@ Feature-based imitation approaches can be traced back to [DeepMimic](https://dl.
 In this framework, the policy is aligned with a reference trajectory by introducing a **phase variable**, which serves as a learned proxy for temporal progress through the motion.
 The reward is computed by evaluating feature-wise distances—such as joint positions, velocities, orientations, and end-effector positions—between the policy-generated trajectory and the reference, synchronized via the phase.
 
-![screen reader text](featured.png "caption")
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/deepmimic.pdf}
-    \caption{DeepMimic-style feature-based methods. The policy receives dense, per-frame rewards by comparing hand-crafted features—such as joint positions and end-effector poses—between its current state and a time-aligned reference state. A phase variable synchronizes policy and demonstration trajectories, enabling accurate motion reproduction but limiting generalization across diverse behaviors due to the lack of structured motion representation.}
-    \label{fig:deepmimic}
-\end{figure}
+![deepmimic](deepmimic.png "DeepMimic-style feature-based methods. The policy receives dense, per-frame rewards by comparing hand-crafted features—such as joint positions and end-effector poses—between its current state and a time-aligned reference state. A phase variable synchronizes policy and demonstration trajectories, enabling accurate motion reproduction but limiting generalization across diverse behaviors due to the lack of structured motion representation.")
 
 Owing to their dense and explicit reward structure, these methods are highly effective at reproducing **fine-grained motion details**.
 However, their scalability to diverse motion datasets is limited.
@@ -129,13 +122,7 @@ In the AMP setting, a **discriminator** is trained to distinguish between state 
 As the policy improves, its transitions become increasingly indistinguishable from the expert data, thereby reducing the discriminator's ability to classify them correctly.
 The discriminator’s output serves as a reward signal, guiding the policy toward behavioral fidelity.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/gan-based.pdf}
-    \caption{GAN-based methods via adversarial rewards. A discriminator learns to distinguish short transition snippets from policy-generated and demonstration data, providing an implicit reward signal that guides the policy toward expert-like behavior. By operating on short windows without explicit time alignment, this approach scales to diverse motion datasets and captures distributional similarity, enabling smoother transitions across unstructured behaviors.}
-    \label{fig:gan-based}
-\end{figure}
-
+![gan-based](gan-based.png "GAN-based methods via adversarial rewards. A discriminator learns to distinguish short transition snippets from policy-generated and demonstration data, providing an implicit reward signal that guides the policy toward expert-like behavior. By operating on short windows without explicit time alignment, this approach scales to diverse motion datasets and captures distributional similarity, enabling smoother transitions across unstructured behaviors.")
 
 From an optimization standpoint, GAN-based methods treat the policy as a **generator** in a two-player minimax game.
 These methods scale naturally to large and diverse motion datasets, as they operate on short, fixed-length **transition windows**, typically spanning two to eight frames, rather than full trajectories.
@@ -146,24 +133,27 @@ Because the reward is defined over **distributional similarity**, rather than ma
 
 Despite their empirical success across domains, including character animation (e.g., [InterPhys](https://dl.acm.org/doi/pdf/10.1145/3588432.3591525), [PACER](https://openaccess.thecvf.com/content/CVPR2023/papers/Rempe_Trace_and_Pace_Controllable_Pedestrian_Animation_via_Guided_Trajectory_Diffusion_CVPR_2023_paper.pdf)) and [robotics](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9981973), adversarial imitation introduces fundamental challenges that impact training reliability and policy expressiveness.
 
-**Discriminator Saturation** \; A key challenge in adversarial setups is that the discriminator can rapidly become overconfident, especially early in training when the policy generates trajectories that diverge significantly from the reference distribution.
+{{% callout warning %}}
+**Discriminator Saturation**
+
+A key challenge in adversarial setups is that the discriminator can rapidly become overconfident, especially early in training when the policy generates trajectories that diverge significantly from the reference distribution.
 In this regime, the discriminator easily classifies all transitions correctly, producing near-zero gradients and leaving the policy without informative reward signals.
 This phenomenon is particularly problematic in high-dimensional or difficult environments, such as rough terrain locomotion or manipulation tasks, where meaningful exploration is essential but sparse.
+{{% /callout %}}
 
 Solutions such as Wasserstein-based objectives (e.g., [WASABI](https://proceedings.mlr.press/v205/li23b/li23b.pdf), [HumanMimic](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10610449)) aim to retain useful gradients and therefore reward signals even in the face of a strong discriminator.
 
-**Mode Collapse** \; Another failure mode is the collapse of behavioral diversity: the policy may converge to producing only a narrow subset of trajectories that reliably fool the discriminator, ignoring the wider variation present in the demonstrations.
+{{% callout warning %}}
+**Mode Collapse**
+
+Another failure mode is the collapse of behavioral diversity: the policy may converge to producing only a narrow subset of trajectories that reliably fool the discriminator, ignoring the wider variation present in the demonstrations.
 While the discriminator implicitly encourages local smoothness in the reward landscape, AMP lacks a structured motion representation that would enable global diversity or controllable behavior synthesis.
 Consequently, the resulting policies often underutilize the full range of skills present in the data.
+{{% /callout %}}
 
 To counteract this limitation, a variety of techniques introduce latent representations to provide structured control over motion variation.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/gan-based_conditioned.pdf}
-    \caption{Latent-conditioned GAN-based methods. The policy and discriminator are jointly conditioned on learned motion embeddings, which are derived from demonstration data through unsupervised or supervised representation learning. These latent variables structure the imitation space, promoting behavioral diversity, stabilizing training, and enabling controllable skill generation beyond what implicit adversarial objectives can achieve alone.}
-    \label{fig:gan-based_conditioned}
-\end{figure}
+![gan-based_conditioned](gan-based_conditioned.png "Latent-conditioned GAN-based methods. The policy and discriminator are jointly conditioned on learned motion embeddings, which are derived from demonstration data through unsupervised or supervised representation learning. These latent variables structure the imitation space, promoting behavioral diversity, stabilizing training, and enabling controllable skill generation beyond what implicit adversarial objectives can achieve alone.")
 
 Unsupervised approaches like [CASSI](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10160421), [ASE](https://dl.acm.org/doi/pdf/10.1145/3528223.3530110), and [CALM](https://dl.acm.org/doi/pdf/10.1145/3588432.3591541) learn continuous embeddings over motion space, optimizing mutual information between latent codes and observed behaviors to preserve diversity.
 These embeddings are then used to condition the policy, enabling the generation of distinct behaviors from different regions of the latent space.
@@ -187,18 +177,16 @@ The core insight behind this renewed direction is the importance of a well-struc
 While GAN-based methods rely on the discriminator to **implicitly induce** such a representation, often requiring additional mechanisms to extract, control, or condition on it, feature-based approaches allow for the **explicit construction** of motion embeddings that are either precomputed or learned in parallel with policy training.
 This explicitness simplifies conditioning and reward design, often reducing the reward to weighted feature differences relative to a reference state.
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/feature-based.pdf}
-    \caption{Feature-based methods with structured motion representations. The policy receives per-frame rewards based on feature differences with reference states and is conditioned on compact motion embeddings derived from demonstration data. This design preserves the interpretability of hand-crafted objectives while enabling smoother transitions and broader generalization across behaviors through learned motion structure.}
-    \label{fig:feature-based}
-\end{figure}
+![feature-based](feature-based.png "Feature-based methods with structured motion representations. The policy receives per-frame rewards based on feature differences with reference states and is conditioned on compact motion embeddings derived from demonstration data. This design preserves the interpretability of hand-crafted objectives while enabling smoother transitions and broader generalization across behaviors through learned motion structure.")
 
 As a result, a new class of imitation approaches has emerged that maintains the explicit reward structure of traditional feature-based methods, but augments it with **representation learning** to scale across tasks and motions.
 In many cases, reference frames, or compact summaries thereof, are injected directly into the policy, providing frame-level tracking targets that guide behavior.
 
-**Sophisticated Motion Representation** \; A central challenge for this class of methods is the construction of motion representations that support smooth transitions and structural generalization. Compact, low-dimensional embeddings promote semantic understanding of inter-motion relationships and improve sample efficiency.
+{{% callout warning %}}
+**Sophisticated Motion Representation**
+
+A central challenge for this class of methods is the construction of motion representations that support smooth transitions and structural generalization. Compact, low-dimensional embeddings promote semantic understanding of inter-motion relationships and improve sample efficiency.
+{{% /callout %}}
 
 To this end, some methods inject reference features or full motion states directly into the policy (e.g., [PhysHOI](https://arxiv.org/pdf/2312.04393), [ExBody](https://arxiv.org/pdf/2402.16796), [H2O](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10801984), [HumanPlus](https://arxiv.org/pdf/2406.10454), [MaskedMimic](https://dl.acm.org/doi/pdf/10.1145/3687951), [ExBody2](https://arxiv.org/pdf/2412.13196?), [OmniH2O](https://arxiv.org/pdf/2406.08858), [AMO](https://arxiv.org/pdf/2505.03738), [TWIST](https://arxiv.org/pdf/2505.02833), [GMT](https://arxiv.org/pdf/2506.14770)), preserving spatial coherence in the motion space.
 Others pursue more abstract embeddings through self-supervised or policy-conditioned learning.
@@ -206,8 +194,12 @@ For instance, [ControlVAE](https://dl.acm.org/doi/pdf/10.1145/3550454.3555434), 
 Frequency-domain methods such as [PAE](https://dl.acm.org/doi/abs/10.1145/3528223.3530178), [FLD](https://arxiv.org/pdf/2402.13820), and [DFM](https://arxiv.org/pdf/2502.10980) impose motion-inductive biases that capture the periodic and hierarchical structure of motion.
 These techniques collectively extend the DeepMimic paradigm by generalizing phase alignment and structural similarity beyond heuristics.
 
-**Inflexible Imitation Adaptation** \; A limitation of these representation-driven feature-based methods is that they often rely on explicit tracking of full trajectories, enforced by dense per-step rewards.
+{{% callout warning %}}
+**Inflexible Imitation Adaptation**
+
+A limitation of these representation-driven feature-based methods is that they often rely on explicit tracking of full trajectories, enforced by dense per-step rewards.
 This design makes it difficult to adapt or deviate from the reference when auxiliary tasks require flexibility, as is common in goal-directed or interaction-heavy settings.
+{{% /callout %}}
 
 To address this, some approaches introduce mechanisms to adaptively relax imitation constraints.
 For example, [MCP](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/700491/1/output.pdf) introduces a fallback mechanism that adjusts phase progression when key task objectives are not met.
@@ -253,7 +245,7 @@ Each offers distinct advantages and faces unique challenges, especially as the f
     \label{table:taxonomy}
 \end{table}
 
-\subsection{GAN-Based Methods}
+### GAN-Based Methods
 
 GAN-based approaches, such as AMP and its derivatives, use a discriminator to assign reward signals based on the realism of short transition snippets.
 This formulation dispenses with time-aligned supervision, allowing policies to imitate motion in a distributional sense rather than reproducing specific trajectories.
@@ -266,7 +258,7 @@ These latent-conditioned GANs can also model semantic structure in motion space,
 Despite these benefits, GAN-based methods remain prone to **training instability**, require careful discriminator design, and often offer coarser control over motion details.
 Their implicit reward structure can obscure performance tuning and requires auxiliary mechanisms for precise task alignment.
 
-\subsection{Feature-Based Methods}
+### Feature-Based Methods
 
 In contrast, feature-based imitation methods like DeepMimic start with dense, per-frame reward functions derived from specific motion features.
 This yields strong supervision for motion matching, making them highly effective for replicating fine-grained details in demonstrated behavior.
@@ -324,7 +316,8 @@ By focusing on such factors, researchers and practitioners can better understand
 
 ## Debunking Common Beliefs
 
-Despite a growing body of research, misconceptions remain prevalent in discussions of GAN-based versus feature-based learning from demonstrations. Below, we revisit some common claims, clarify their limitations, and situate them within a more rigorous analytical framework.
+Despite a growing body of research, misconceptions remain prevalent in discussions of GAN-based versus feature-based learning from demonstrations.
+Below, we revisit some common claims, clarify their limitations, and situate them within a more rigorous analytical framework.
 
 > **GAN-based methods automatically develop a distance metric between reference and policy motions.**
 
