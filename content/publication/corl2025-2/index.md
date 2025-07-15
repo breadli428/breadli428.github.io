@@ -46,9 +46,9 @@ summary: In this work, we propose a memory-enhanced meta-reinforcement learning 
 featured: true
 
 # Custom links (uncomment lines below)
-# links:
-# - name: Custom Link
-#   url: http://example.org
+links:
+- name: Project
+  url: 'https://sites.google.com/view/corl2025-ma/home'
 
 url_pdf: 'https://arxiv.org/abs/2502.01521'
 url_code: ''
@@ -57,7 +57,7 @@ url_poster: ''
 url_project: ''
 url_slides: ''
 url_source: ''
-url_video: ''
+url_video: 'https://www.youtube.com/watch?v=I2jMrrBqisI'
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.

@@ -1,21 +1,23 @@
 ---
-title: 'Offline Robotic World Model: Learning Robotic Policies without a Physics Simulator'
+title: 'Constrained Style Learning from Imperfect Demonstrations under Task Optimality'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
 # and it will be replaced with their full name and linked to their profile.
 authors:
+  - Kehan Wen
   - admin
-  - Andreas Krause
+  - Junzhe He
   - Marco Hutter
 
 # Author notes (optional)
 author_notes:
+  - 'Robotic Systems Lab, ETH Zurich, Switzerland'
   - 'ETH AI Center, Switzerland'
-  - 'Learning & Adaptive Systems Group, ETH Zurich, Switzerland'
+  - 'Robotic Systems Lab, ETH Zurich, Switzerland'
   - 'Robotic Systems Lab, ETH Zurich, Switzerland'
 
-date: '2025-04-30T00:00:00Z'
+date: '2025-07-10T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
@@ -30,10 +32,11 @@ publication_types: ['paper-conference']
 publication: In *arXiv*
 publication_short: In *arXiv*
 
-abstract: Reinforcement Learning (RL) has demonstrated impressive capabilities in robotic control but remains challenging due to high sample complexity, safety concerns, and the sim-to-real gap. While offline RL eliminates the need for risky real-world exploration by learning from pre-collected data, it suffers from distributional shift, limiting policy generalization. Model-Based RL (MBRL) addresses this by leveraging predictive models for synthetic rollouts, yet existing approaches often lack robust uncertainty estimation, leading to compounding errors in offline settings. We introduce Offline Robotic World Model (RWM-O), a model-based approach that explicitly estimates epistemic uncertainty to improve policy learning without reliance on a physics simulator. By integrating these uncertainty estimates into policy optimization, our approach penalizes unreliable transitions, reducing overfitting to model errors and enhancing stability. Experimental results show that RWM-O improves generalization and safety, enabling policy learning purely from real-world data and advancing scalable, data-efficient RL for robotics.
+abstract: Learning from demonstration has proven effective in robotics for acquiring natural behaviors, such as stylistic motions and lifelike agility, particularly when explicitly defining style-oriented reward functions is challenging. Synthesizing stylistic motions for real-world tasks usually requires balancing task performance and imitation quality. Existing methods generally depend on expert demonstrations closely aligned with task objectives. However, practical demonstrations are often incomplete or unrealistic, causing current methods to boost style at the expense of task performance. To address this issue, we propose formulating the problem as a constrained Markov Decision Process (CMDP). Specifically, we optimize a style-imitation objective with constraints to maintain near-optimal task performance. We introduce an adaptively adjustable Lagrangian multiplier to guide the agent to imitate demonstrations selectively, capturing stylistic nuances without compromising task performance. We validate our approach across multiple robotic platforms and tasks, demonstrating both robust task performance and high-fidelity style learning. On ANYmal-D hardware we show a 14.5% drop in mechanical energy and a more agile gait pattern, showcasing real-world benefits.
+
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics from offline data.
+summary: In this work, we propose a constrained style learning approach that balances task performance and stylistic imitation.
 
 # tags:
 #   - Large Language Models
@@ -44,21 +47,21 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: 'https://sites.google.com/view/corl2025-rwm-o/home'
+  url: 'https://sites.google.com/view/consmimic'
 
-url_pdf: 'https://arxiv.org/abs/2504.16680'
+url_pdf: 'https://arxiv.org/abs/2507.09371v1'
 url_code: ''
 url_dataset: ''
 url_poster: ''
 url_project: ''
 url_slides: ''
 url_source: ''
-url_video: 'https://www.youtube.com/playlist?list=PLhqs0Oka9VREeEZem0CLuPRJ-ysNHcYGc'
+url_video: ''
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Offline Robotic World Model'
+  caption: 'ConsMimic'
   focal_point: ''
   preview_only: false
 

@@ -1,21 +1,23 @@
 ---
-title: 'Offline Robotic World Model: Learning Robotic Policies without a Physics Simulator'
+title: 'Motion Priors Reimagined: Adapting Flat-Terrain Skills for Complex Quadruped Mobility'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
 # and it will be replaced with their full name and linked to their profile.
 authors:
+  - Zewei Zhang
   - admin
-  - Andreas Krause
+  - Takahiro Miki
   - Marco Hutter
 
 # Author notes (optional)
 author_notes:
+  - 'Robotic Systems Lab, ETH Zurich, Switzerland'
   - 'ETH AI Center, Switzerland'
-  - 'Learning & Adaptive Systems Group, ETH Zurich, Switzerland'
+  - 'Robotic Systems Lab, ETH Zurich, Switzerland'
   - 'Robotic Systems Lab, ETH Zurich, Switzerland'
 
-date: '2025-04-30T00:00:00Z'
+date: '2025-07-01T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
@@ -30,10 +32,11 @@ publication_types: ['paper-conference']
 publication: In *arXiv*
 publication_short: In *arXiv*
 
-abstract: Reinforcement Learning (RL) has demonstrated impressive capabilities in robotic control but remains challenging due to high sample complexity, safety concerns, and the sim-to-real gap. While offline RL eliminates the need for risky real-world exploration by learning from pre-collected data, it suffers from distributional shift, limiting policy generalization. Model-Based RL (MBRL) addresses this by leveraging predictive models for synthetic rollouts, yet existing approaches often lack robust uncertainty estimation, leading to compounding errors in offline settings. We introduce Offline Robotic World Model (RWM-O), a model-based approach that explicitly estimates epistemic uncertainty to improve policy learning without reliance on a physics simulator. By integrating these uncertainty estimates into policy optimization, our approach penalizes unreliable transitions, reducing overfitting to model errors and enhancing stability. Experimental results show that RWM-O improves generalization and safety, enabling policy learning purely from real-world data and advancing scalable, data-efficient RL for robotics.
+abstract: Reinforcement learning (RL)-based legged locomotion controllers often require meticulous reward tuning to track velocities or goal positions while preserving smooth motion on various terrains. Motion imitation methods via RL using demonstration data reduce reward engineering but fail to generalize to novel environments. We address this by proposing a hierarchical RL framework in which a low-level policy is first pre-trained to imitate animal motions on flat ground, thereby establishing motion priors. A subsequent high-level, goal-conditioned policy then builds on these priors, learning residual corrections that enable perceptive locomotion, local obstacle avoidance, and goal-directed navigation across diverse and rugged terrains. Simulation experiments illustrate the effectiveness of learned residuals in adapting to progressively challenging uneven terrains while still preserving the locomotion characteristics provided by the motion priors. Furthermore, our results demonstrate improvements in motion regularization over baseline models trained without motion priors under similar reward setups. Real-world experiments with an ANYmal-D quadruped robot confirm our policy’s capability to generalize animal-like locomotion skills to complex terrains, demonstrating smooth and efficient locomotion and local navigation performance amidst challenging terrains with obstacles.
+
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics from offline data.
+summary: In this work, we propose a hierarchical reinforcement learning method that extends flat-terrain skills for complex terrain navigation.
 
 # tags:
 #   - Large Language Models
@@ -44,21 +47,21 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: 'https://sites.google.com/view/corl2025-rwm-o/home'
+  url: 'https://anymalprior.github.io/'
 
-url_pdf: 'https://arxiv.org/abs/2504.16680'
+url_pdf: 'https://arxiv.org/abs/2505.16084'
 url_code: ''
 url_dataset: ''
 url_poster: ''
 url_project: ''
 url_slides: ''
 url_source: ''
-url_video: 'https://www.youtube.com/playlist?list=PLhqs0Oka9VREeEZem0CLuPRJ-ysNHcYGc'
+url_video: ''
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Offline Robotic World Model'
+  caption: 'Motion Priors Reimagined'
   focal_point: ''
   preview_only: false
 

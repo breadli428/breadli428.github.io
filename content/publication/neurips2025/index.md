@@ -42,9 +42,9 @@ summary: In this work, we propose a model-based reinforcement learning method fo
 featured: true
 
 # Custom links (uncomment lines below)
-# links:
-# - name: Custom Link
-#   url: http://example.org
+links:
+- name: Project
+  url: 'https://sites.google.com/view/neurips2025-rwm/home'
 
 url_pdf: 'https://arxiv.org/abs/2501.10100'
 url_code: ''
@@ -53,7 +53,7 @@ url_poster: ''
 url_project: ''
 url_slides: ''
 url_source: ''
-url_video: ''
+url_video: 'https://www.youtube.com/playlist?list=PLhqs0Oka9VRHfHk6nffzjiIsGv2KA0Wp9'
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
