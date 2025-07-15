@@ -157,7 +157,7 @@ sections:
             </div>
             <!-- </blockquote> -->
           </details>
-          <details>
+          <details open>
             <summary>
               <strong>2023</strong>
             </summary>
