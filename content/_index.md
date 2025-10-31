@@ -98,6 +98,30 @@ sections:
               <p></p>
               <details open>
                 <summary>
+                  <strong>Oct 02: Our workshop at the 2025 International Conference on Humanoid Robots concluded with great success.</strong>
+                </summary>
+                Together with <a href="https://www.linkedin.com/in/julian-esser/" target="_blank" rel="noopener">Julian Eßer</a>, <a href="https://gmargo11.github.io/" target="_blank" rel="noopener">Gabe Margolis</a>, and <a href="http://hxu.rocks/" target="_blank" rel="noopener">Huazhe Xu</a>, I had the privilege of organizing the <a href="https://sites.google.com/view/sim-to-real-humanoids/home" target="_blank" rel="noopener">Sim-to-Real Transfer for Humanoid Robots Workshop</a> at the <a href="https://2025humanoids.org/" target="_blank" rel="noopener">2025 International Conference on Humanoid Robots</a> in Seoul, South Korea. The workshop brought together leading researchers and practitioners to discuss the latest advances and challenges in bridging the gap between simulation and real-world humanoid control.
+              </details>
+              <details open>
+                <summary>
+                  <strong>Sep 17: I gave a talk on Learning from Demonstrations at MyoLab.</strong>
+                </summary>
+                In this <a href="https://t.co/cQxQ2GNe5S" target="_blank" rel="noopener">talk</a>, I had the privilege of presenting a comprehensive overview of my experience in the field of Learning from Demonstrations. I discussed the evolution of LfD techniques from feature-based methods to modern generative approaches such as GAN-based learning, and highlighted how these methods have shaped current trends in both robotics and character animation. 
+              </details>
+              <details open>
+                <summary>
+                  <strong style="color:rgb(255,0,0);">Aug 08: Two papers were accepted to CoRL 2025.</strong>
+                </summary>
+                Our work <a href="/publication/corl2025-3" target="_blank" rel="noopener"><em>Motion Priors Reimagined: Adapting Flat-Terrain Skills for Complex Quadruped Mobility</em></a> and <a href="/publication/corl2025-4" target="_blank" rel="noopener"><em>Constrained Style Learning from Imperfect Demonstrations under Task Optimality</em></a> were accepted by <a href="https://www.corl.org/" target="_blank" rel="noopener">Conference on Robot Learning (CoRL) 2025</a>. CoRL 2025 will be held in Seoul, South Korea from September 27 to 30, 2025.
+              </details>
+              <details open>
+                <summary>
+                  <strong>Jul 15: We published a survey on Learning from Demonstrations.</strong>
+                </summary>
+                While learning from demonstrations has become a widely adopted strategy, many practitioners choose methods based on precedent or anecdotal success rather than a systematic understanding of the algorithmic factors driving performance. Drawing on our extensive experience in the field, we developed <a href="/post/lfd" target="_blank" rel="noopener"><em>Feature-Based vs. GAN-Based Imitation: When and Why</em></a>, a comprehensive survey designed to provide structured guidance and serve as a practical resource for the community.
+              </details>
+              <details open>
+                <summary>
                   <strong style="color:rgb(255,0,0);">Jan 27: Our work was accepted to ICRA 2025.</strong>
                 </summary>
                 Our work <a href="/publication/icra2025" target="_blank" rel="noopener"><em>DFM: Deep Fourier Mimic for Expressive Dance Motion Learning</em></a> was accepted by <a href="https://2025.ieee-icra.org/" target="_blank" rel="noopener">IEEE International Conference on Robotics and Automation (ICRA) 2025</a>. ICRA 2025 will be held in Atlanta, United States from May 19 to 23, 2025.
