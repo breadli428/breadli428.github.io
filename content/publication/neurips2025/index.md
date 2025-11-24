@@ -44,12 +44,12 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: 'https://sites.google.com/view/neurips2025-rwm/home'
+  url: 'https://sites.google.com/view/roboticworldmodel/home'
 
 url_pdf: 'https://arxiv.org/abs/2501.10100'
-url_code: ''
+url_code: 'https://github.com/leggedrobotics/robotic_world_model'
 url_dataset: ''
-url_poster: ''
+url_poster: 'https://drive.google.com/file/d/1PBrmlGrqrA4r_4DBX-_cSQFOiRUBGxaK/view?usp=sharing'
 url_project: ''
 url_slides: ''
 url_source: ''
