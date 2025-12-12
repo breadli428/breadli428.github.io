@@ -98,6 +98,12 @@ sections:
               <p></p>
               <details open>
                 <summary>
+                  <strong style="color:rgb(255,0,0);">Dec 06: Our work received the outstanding paper award at the EWM workshop, NeurIPS, San Diego, United States.</strong>
+                </summary>
+                It was announced during <a href="https://neurips.cc/" target="_blank" rel="noopener">Conference on Neural Information Processing Systems (NeurIPS) 2025</a> in San Diego, United States that our work <a href="/publication/neurips2025" target="_blank" rel="noopener"><em>Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics</em></a> received the outstanding paper award at the <a href="https://embodied-world-models.github.io/" target="_blank" rel="noopener">Embodied World Models for Decision Making Workshop</a>. As one out of fifty accepted papers, our work has received great acknowledgment from the community.
+              </details>
+              <details open>
+                <summary>
                   <strong>Oct 02: Our workshop at the 2025 International Conference on Humanoid Robots concluded with great success.</strong>
                 </summary>
                 Together with <a href="https://www.linkedin.com/in/julian-esser/" target="_blank" rel="noopener">Julian Eßer</a>, <a href="https://gmargo11.github.io/" target="_blank" rel="noopener">Gabe Margolis</a>, and <a href="http://hxu.rocks/" target="_blank" rel="noopener">Huazhe Xu</a>, I had the privilege of organizing the <a href="https://sites.google.com/view/sim-to-real-humanoids/home" target="_blank" rel="noopener">Sim-to-Real Transfer for Humanoid Robots Workshop</a> at the <a href="https://2025humanoids.org/" target="_blank" rel="noopener">2025 International Conference on Humanoid Robots</a> in Seoul, South Korea. The workshop brought together leading researchers and practitioners to discuss the latest advances and challenges in bridging the gap between simulation and real-world humanoid control.
