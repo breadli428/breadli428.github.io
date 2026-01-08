@@ -35,7 +35,7 @@ publication_short: In *arXiv*
 abstract: Combining the agility of legged locomotion with the capabilities of manipulation, loco-manipulation platforms have the potential to perform complex tasks in real-world applications. To this end, state-of-the-art quadrupeds with attached manipulators, such as the Boston Dynamics Spot, have emerged to provide a capable and robust platform. However, both the complexity of loco-manipulation control, as well as the black-box nature of commercial platforms pose challenges for developing accurate dynamics models and control policies. We address these challenges by developing a hand-crafted kinematic model for a quadruped-with-arm platform and, together with recent advances in Bayesian Neural Network (BNN)-based dynamics learning using physical priors, efficiently learn an accurate dynamics model from data. We then derive control policies for loco-manipulation via model-based reinforcement learning (RL). We demonstrate the effectiveness of this approach on hardware using the Boston Dynamics Spot with a manipulator, accurately performing dynamic end-effector trajectory tracking even in low data regimes.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a BNN-based dynamics learning method using physical priors for efficient policy learning.
+summary: We propose a BNN-based dynamics learning method using physical priors for efficient policy learning.
 
 # tags:
 #   - Large Language Models

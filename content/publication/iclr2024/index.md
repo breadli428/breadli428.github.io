@@ -35,7 +35,7 @@ publication_short: In *ICLR* <span class="middot-divider"></span><strong style="
 abstract: Motion trajectories offer reliable references for physics-based motion learning but suffer from sparsity, particularly in regions that lack sufficient data coverage. To address this challenge, we introduce a self-supervised, structured representation and generation method that extracts spatial-temporal relationships in periodic or quasi-periodic motions. The motion dynamics in a continuously parameterized latent space enable our method to enhance the interpolation and generalization capabilities of motion learning algorithms. The motion learning controller, informed by the motion parameterization, operates online tracking of a wide range of motions, including targets unseen during training. With a fallback mechanism, the controller dynamically adapts its tracking strategy and automatically resorts to safe action execution when a potentially risky target is proposed. By leveraging the identified spatial-temporal structure, our work opens new possibilities for future advancements in general motion representation and learning algorithms.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a self-supervised, structured representation and generation method that extracts spatial-temporal relationships in periodic or quasi-periodic motions.
+summary: We propose a self-supervised, structured representation and generation method that extracts spatial-temporal relationships in periodic or quasi-periodic motions.
 
 # tags:
 #   - Large Language Models

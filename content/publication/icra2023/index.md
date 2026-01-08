@@ -39,7 +39,7 @@ publication_short: In *ICRA*
 abstract: Learning diverse skills is one of the main challenges in robotics. To this end, imitation learning approaches have achieved impressive results. These methods require explicitly labeled datasets or assume consistent skill execution to enable learning and active control of individual behaviors, which limits their applicability. In this work, we propose a cooperative adversarial method for obtaining controllable skill sets from unlabeled datasets containing diverse state transition patterns by maximizing their discriminability. Moreover, we show that by utilizing unsupervised skill discovery in the generative adversarial imitation learning framework, novel and useful skills emerge with successful task fulfillment. Finally, the obtained universal policies are tested on an agile quadruped robot called Solo 8 and present faithful replications of diverse skills encoded in the demonstrations.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a cooperative generative adversarial method for obtaining controllable skill sets from unlabeled datasets containing diverse state transition patterns.
+summary: We propose a cooperative generative adversarial method for obtaining controllable skill sets from unlabeled datasets containing diverse state transition patterns.
 
 # tags:
 #   - Large Language Models

@@ -36,7 +36,7 @@ abstract: Learning from demonstration has proven effective in robotics for acqui
 
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a constrained style learning approach that balances task performance and stylistic imitation.
+summary: We propose a constrained style learning approach that balances task performance and stylistic imitation.
 
 # tags:
 #   - Large Language Models

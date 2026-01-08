@@ -36,7 +36,7 @@ abstract: Reinforcement learning (RL)-based legged locomotion controllers often 
 
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a hierarchical reinforcement learning method that extends flat-terrain skills for complex terrain navigation.
+summary: We propose a hierarchical reinforcement learning method that extends flat-terrain skills for complex terrain navigation.
 
 # tags:
 #   - Large Language Models

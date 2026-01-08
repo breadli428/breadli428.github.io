@@ -37,7 +37,7 @@ publication_short: In *arXiv*
 abstract: In reinforcement learning (RL), agents often struggle to perform well on tasks that differ from those encountered during training. This limitation presents a challenge to the broader deployment of RL in diverse and dynamic task settings. In this work, we introduce memory augmentation, a memory-based RL approach to improve task generalization. Our approach leverages task-structured augmentations to simulate plausible out-of-distribution scenarios and incorporates memory mechanisms to enable context-aware policy adaptation. Trained on a predefined set of tasks, our policy demonstrates the ability to generalize to unseen tasks through memory augmentation without requiring additional interactions with the environment. Through extensive simulation experiments and real-world hardware evaluations on legged locomotion tasks, we demonstrate that our approach achieves zero-shot generalization to unseen tasks while maintaining robust in-distribution performance and high sample efficiency.
 
 # Summary. An optional shortened abstract.
-summary: In this work, we propose a memory-enhanced meta-reinforcement learning method that extends OOD generalization for RL agents.
+summary: We propose a memory-enhanced meta-reinforcement learning method that extends OOD generalization for RL agents.
 
 # tags:
 #   - Large Language Models
