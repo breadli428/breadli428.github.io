@@ -27,8 +27,8 @@ publishDate: '2017-01-01T00:00:00Z'
 publication_types: ['paper-conference']
 
 # Publication name and optional abbreviated publication name.
-publication: 'In *arXiv*'
-publication_short: In *arXiv* <span class="middot-divider"></span><strong style="color:rgb(255,0,0);">Outstanding Paper Award in EWM Workshop</strong>
+publication: 'In *Conference on Neural Information Processing Systems, Embodied World Models Workshop*'
+publication_short: In *NeurIPS EWM Workshop* <span class="middot-divider"></span><strong style="color:rgb(255,0,0);">Outstanding Paper Award</strong>
 
 abstract: Learning robust and generalizable world models is crucial for enabling efficient and scalable robotic control in real-world environments. In this work, we introduce a novel framework for learning world models that accurately capture complex, partially observable, and stochastic dynamics. The proposed method employs a dual-autoregressive mechanism and self-supervised training to achieve reliable long-horizon predictions without relying on domain-specific inductive biases, ensuring adaptability across diverse robotic tasks. We further propose a policy optimization framework that leverages world models for efficient training in imagined environments and seamless deployment in real-world systems. Through extensive experiments, our approach consistently outperforms state-of-the-art methods, demonstrating superior autoregressive prediction accuracy, robustness to noise, and generalization across manipulation and locomotion tasks. Notably, policies trained with our method are successfully deployed on ANYmal D hardware in a zero-shot transfer, achieving robust performance with minimal sim-to-real performance loss. This work advances model-based reinforcement learning by addressing the challenges of long-horizon prediction, error accumulation, and sim-to-real transfer. By providing a scalable and robust framework, the introduced methods pave the way for adaptive and efficient robotic systems in real-world applications.
 
