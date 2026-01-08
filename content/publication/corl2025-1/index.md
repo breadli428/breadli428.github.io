@@ -1,5 +1,5 @@
 ---
-title: 'Offline Robotic World Model: Learning Robotic Policies without a Physics Simulator'
+title: 'Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
@@ -15,7 +15,7 @@ author_notes:
   - 'Learning & Adaptive Systems Group, ETH Zurich, Switzerland'
   - 'Robotic Systems Lab, ETH Zurich, Switzerland'
 
-date: '2025-04-30T00:00:00Z'
+date: '2026-01-01T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
@@ -30,7 +30,7 @@ publication_types: ['paper-conference']
 publication: In *arXiv*
 publication_short: In *arXiv*
 
-abstract: Reinforcement Learning (RL) has demonstrated impressive capabilities in robotic control but remains challenging due to high sample complexity, safety concerns, and the sim-to-real gap. While offline RL eliminates the need for risky real-world exploration by learning from pre-collected data, it suffers from distributional shift, limiting policy generalization. Model-Based RL (MBRL) addresses this by leveraging predictive models for synthetic rollouts, yet existing approaches often lack robust uncertainty estimation, leading to compounding errors in offline settings. We introduce Offline Robotic World Model (RWM-O), a model-based approach that explicitly estimates epistemic uncertainty to improve policy learning without reliance on a physics simulator. By integrating these uncertainty estimates into policy optimization, our approach penalizes unreliable transitions, reducing overfitting to model errors and enhancing stability. Experimental results show that RWM-O improves generalization and safety, enabling policy learning purely from real-world data and advancing scalable, data-efficient RL for robotics.
+abstract: Reinforcement Learning (RL) has achieved impressive results in robotics, yet high-performing pipelines remain highly task-specific, with little reuse of prior data. Offline Model-based RL (MBRL) offers greater data efficiency by training policies entirely from existing datasets, but suffers from compounding errors and distribution shift in long-horizon rollouts. Although existing methods have shown success in controlled simulation benchmarks, robustly applying them to the noisy, biased, and partially observed datasets typical of real-world robotics remains challenging. We present a principled pipeline for making offline MBRL effective on physical robots. Our RWM-U extends autoregressive world models with epistemic uncertainty estimation, enabling temporally consistent multi-step rollouts with uncertainty effectively propagated over long horizons. We combine RWM-U with MOPO-PPO, which adapts uncertainty-penalized policy optimization to the stable, on-policy PPO framework for real-world control. We evaluate our approach on diverse manipulation and locomotion tasks in simulation and on real quadruped and humanoid, training policies entirely from offline datasets. The resulting policies consistently outperform model-free and uncertainty-unaware model-based baselines, and fusing real-world data in model learning further yields robust policies that surpass online model-free baselines trained solely in simulation.
 
 # Summary. An optional shortened abstract.
 summary: In this work, we propose a model-based reinforcement learning method for robust policy optimization in robotics from offline data.
@@ -44,7 +44,7 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: 'https://sites.google.com/view/corl2025-rwm-o/home'
+  url: 'https://sites.google.com/view/uncertainty-aware-rwm/home'
 
 url_pdf: 'https://arxiv.org/abs/2504.16680'
 url_code: ''
@@ -58,7 +58,7 @@ url_video: 'https://www.youtube.com/playlist?list=PLhqs0Oka9VREeEZem0CLuPRJ-ysNH
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Offline Robotic World Model'
+  caption: 'Uncertainty-Aware Robotic World Model'
   focal_point: ''
   preview_only: false
 
