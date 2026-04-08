@@ -1,5 +1,5 @@
 ---
-title: 'Toward Task Generalization via Memory Augmentation in Meta-Reinforcement Learning'
+title: 'Symmetry-Guided Memory Augmentation for Efficient Locomotion Learning'
 
 # Authors
 # If you created a profile for a user (e.g. the default `admin` user), write the username (folder name) here
@@ -34,10 +34,10 @@ publication_types: ['paper-conference']
 publication: In *arXiv*
 publication_short: In *arXiv*
 
-abstract: In reinforcement learning (RL), agents often struggle to perform well on tasks that differ from those encountered during training. This limitation presents a challenge to the broader deployment of RL in diverse and dynamic task settings. In this work, we introduce memory augmentation, a memory-based RL approach to improve task generalization. Our approach leverages task-structured augmentations to simulate plausible out-of-distribution scenarios and incorporates memory mechanisms to enable context-aware policy adaptation. Trained on a predefined set of tasks, our policy demonstrates the ability to generalize to unseen tasks through memory augmentation without requiring additional interactions with the environment. Through extensive simulation experiments and real-world hardware evaluations on legged locomotion tasks, we demonstrate that our approach achieves zero-shot generalization to unseen tasks while maintaining robust in-distribution performance and high sample efficiency.
+abstract: Training reinforcement learning (RL) policies for legged locomotion often requires extensive environment interactions, which are costly and time-consuming. We propose Symmetry-Guided Memory Augmentation (SGMA), a framework that improves training efficiency by combining structured experience augmentation with memory-based context inference. Our method leverages robot and task symmetries to generate additional, physically consistent training experiences without requiring extra interactions. To avoid the pitfalls of naive augmentation, we extend these transformations to the policy's memory states, enabling the agent to retain task-relevant context and adapt its behavior accordingly. We evaluate the approach on quadruped and humanoid robots in simulation, as well as on a real quadruped platform. Across diverse locomotion tasks involving joint failures and payload variations, our method achieves efficient policy training while maintaining robust performance, demonstrating a practical route toward data-efficient RL for legged robots.
 
 # Summary. An optional shortened abstract.
-summary: We propose a memory-enhanced meta-reinforcement learning method that extends OOD generalization for RL agents.
+summary: We propose a memory-enhanced augmentation method for reinforcement learning that extends OOD generalization with context-awareness.
 
 # tags:
 #   - Large Language Models
@@ -48,7 +48,7 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: 'https://sites.google.com/view/corl2025-ma/home'
+  url: 'https://sites.google.com/view/eth-sgma'
 
 url_pdf: 'https://arxiv.org/abs/2502.01521'
 url_code: ''
@@ -57,12 +57,12 @@ url_poster: ''
 url_project: ''
 url_slides: ''
 url_source: ''
-url_video: 'https://www.youtube.com/watch?v=I2jMrrBqisI'
+url_video: 'https://www.youtube.com/watch?v=e30T4eXbbpo'
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 image:
-  caption: 'Memory-Augmented Meta-RL'
+  caption: 'Symmetry-Guided Memory Augmentation'
   focal_point: ''
   preview_only: false
 
