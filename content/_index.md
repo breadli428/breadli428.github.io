@@ -91,42 +91,70 @@ sections:
         <div style="height: 600px; width: 1000px; overflow-y: scroll; align-items: center;">
           <details open>
             <summary>
-              <strong>2025</strong>
+              <strong>2026</strong>
             </summary>
             <!-- <blockquote> -->
             <div style="margin-left:6px; padding-left:20px; border-left:1px solid;">
               <p></p>
               <details open>
                 <summary>
+                  <strong>Apr 22: I gave a talk on Online Reinforcement Learning at ARCAD Lab.</strong>
+                </summary>
+                I had the privilege of presenting my recent work on <a href="https://sites.google.com/view/roboticworldmodel" target="_blank" rel="noopener">Robotic World Model (RWM)</a> and <a href="https://sites.google.com/view/uncertainty-aware-rwm" target="_blank" rel="noopener">Uncertainty-Aware Robotic World Model (RWM-U)</a> at the <a href="https://sites.google.com/umich.edu/arcad-lab/home" target="_blank" rel="noopener">ARCAD Lab</a>, University of Michigan. In this talk, I discussed how we can leverage model-based methods for real-world online reinforcement learning in robotics, and how uncertainty awareness can be incorporated into the training of robotic world models to enhance policy optimization in imagination.  
+              </details>
+              <details open>
+                <summary>
+                  <strong style="color:rgb(255,0,0);">Apr 10: I started as a Student Researcher at Google DeepMind.</strong>
+                </summary>
+                I am excited to join the <a href="https://deepmind.google/models/gemini-robotics/" target="_blank" rel="noopener">Gemini Robotics</a> team and contribute to the research in embodied intelligence and robot learning. It is a great honor to work with the brilliant minds at <a href="https://deepmind.google/" target="_blank" rel="noopener">Google DeepMind</a> and I look forward to the exciting research opportunities ahead!
+              </details>
+              <details open>
+                <summary>
+                  <strong style="color:rgb(255,0,0);">Feb 21: Our work was accepted to CVPR 2026.</strong>
+                </summary>
+                Our work <a href="/publication/cvpr2026" target="_blank" rel="noopener"><em>NIL: No-data Imitation Learning</em></a> was accepted by <a href="https://cvpr.thecvf.com/" target="_blank" rel="noopener">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2026</a>. CVPR 2026 will be held in Denver, United States from Jun 03 to 07, 2026.
+              </details>
+            </div>
+            <!-- </blockquote> -->
+          </details>
+          <details open>
+            <summary>
+              <strong>2025</strong>
+            </summary>
+            <!-- <blockquote> -->
+            <div style="margin-left:6px; padding-left:20px; border-left:1px solid;">
+              <p></p>
+              <details>
+                <summary>
                   <strong style="color:rgb(255,0,0);">Dec 06: Our work received the outstanding paper award at the EWM workshop, NeurIPS, San Diego, United States.</strong>
                 </summary>
                 It was announced during <a href="https://neurips.cc/" target="_blank" rel="noopener">Conference on Neural Information Processing Systems (NeurIPS) 2025</a> in San Diego, United States that our work <a href="/publication/neurips2025" target="_blank" rel="noopener"><em>Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics</em></a> received the outstanding paper award at the <a href="https://embodied-world-models.github.io/" target="_blank" rel="noopener">Embodied World Models for Decision Making Workshop</a>. As one out of fifty accepted papers, our work has received great acknowledgment from the community.
               </details>
-              <details open>
+              <details>
                 <summary>
                   <strong>Oct 02: Our workshop at the 2025 International Conference on Humanoid Robots concluded with great success.</strong>
                 </summary>
                 Together with <a href="https://www.linkedin.com/in/julian-esser/" target="_blank" rel="noopener">Julian Eßer</a>, <a href="https://gmargo11.github.io/" target="_blank" rel="noopener">Gabe Margolis</a>, and <a href="http://hxu.rocks/" target="_blank" rel="noopener">Huazhe Xu</a>, I had the privilege of organizing the <a href="https://sites.google.com/view/sim-to-real-humanoids/home" target="_blank" rel="noopener">Sim-to-Real Transfer for Humanoid Robots Workshop</a> at the <a href="https://2025humanoids.org/" target="_blank" rel="noopener">2025 International Conference on Humanoid Robots</a> in Seoul, South Korea. The workshop brought together leading researchers and practitioners to discuss the latest advances and challenges in bridging the gap between simulation and real-world humanoid control.
               </details>
-              <details open>
+              <details>
                 <summary>
                   <strong>Sep 17: I gave a talk on Learning from Demonstrations at MyoLab.</strong>
                 </summary>
                 In this <a href="https://t.co/cQxQ2GNe5S" target="_blank" rel="noopener">talk</a>, I had the privilege of presenting a comprehensive overview of my experience in the field of Learning from Demonstrations. I discussed the evolution of LfD techniques from feature-based methods to modern generative approaches such as GAN-based learning, and highlighted how these methods have shaped current trends in both robotics and character animation. 
               </details>
-              <details open>
+              <details>
                 <summary>
                   <strong style="color:rgb(255,0,0);">Aug 08: Two papers were accepted to CoRL 2025.</strong>
                 </summary>
                 Our work <a href="/publication/corl2025-3" target="_blank" rel="noopener"><em>Motion Priors Reimagined: Adapting Flat-Terrain Skills for Complex Quadruped Mobility</em></a> and <a href="/publication/corl2025-4" target="_blank" rel="noopener"><em>Constrained Style Learning from Imperfect Demonstrations under Task Optimality</em></a> were accepted by <a href="https://www.corl.org/" target="_blank" rel="noopener">Conference on Robot Learning (CoRL) 2025</a>. CoRL 2025 will be held in Seoul, South Korea from September 27 to 30, 2025.
               </details>
-              <details open>
+              <details>
                 <summary>
                   <strong>Jul 15: We published a survey on Learning from Demonstrations.</strong>
                 </summary>
                 While learning from demonstrations has become a widely adopted strategy, many practitioners choose methods based on precedent or anecdotal success rather than a systematic understanding of the algorithmic factors driving performance. Drawing on our extensive experience in the field, we developed <a href="/post/lfd" target="_blank" rel="noopener"><em>Feature-Based vs. GAN-Based Imitation: When and Why</em></a>, a comprehensive survey designed to provide structured guidance and serve as a practical resource for the community.
               </details>
-              <details open>
+              <details>
                 <summary>
                   <strong style="color:rgb(255,0,0);">Jan 27: Our work was accepted to ICRA 2025.</strong>
                 </summary>

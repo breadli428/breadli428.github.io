@@ -92,6 +92,14 @@ education:
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
+  - position: Student Researcher
+    company_name: Google DeepMind
+    company_url: 'https://deepmind.google/'
+    company_logo: deepmind
+    date_start: 2026-04-10
+    date_end: ''
+    summary: |
+      Vision-Language-Action models with [Oliver Groth](https://ogroth.github.io/).
   - position: Doctoral Fellow
     company_name: ETH AI Center
     company_url: 'https://ai.ethz.ch/'
@@ -99,7 +107,7 @@ work:
     date_start: 2023-11-01
     date_end: ''
     summary: |
-      Robot learning under the supervision of [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea).
+      Robot learning with [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea).
   - position: Visiting Researcher
     company_name: Massachusetts Institute of Technology
     company_url: 'https://www.mit.edu/'
@@ -107,7 +115,7 @@ work:
     date_start: 2023-01-01
     date_end: 2023-08-31
     summary: |
-      Human motion representation and developmental robotics under the supervision of [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU).
+      Human motion representation and developmental robotics with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU).
   - position: Research Intern
     company_name: Max Planck Institute for Intelligent Systems
     company_url: 'https://is.mpg.de/'
@@ -115,15 +123,7 @@ work:
     date_start: 2022-04-01
     date_end: 2022-12-31
     summary: |
-      Agile motion imitation and intrinsic skill exploration under the supervision of [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius).
-  - position: Teaching Assistant
-    company_name: ETH Zurich
-    company_url: 'https://ethz.ch/en.html/'
-    company_logo: eth
-    date_start: 2021-09-01
-    date_end: 2022-01-31
-    summary: |
-      Tutorial delivery for Linear & Combinatorial Optimization (Mathematical Optimization, 11 ECTS) instructed by [Prof. Rico Zenklusen](https://math.ethz.ch/ifor/groups/zenklusen_group/rico-zenklusen.html).
+      Agile motion imitation and intrinsic skill exploration with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius).
   - position: Research Assistant
     company_name: École polytechnique fédérale de Lausanne (EPFL)
     company_url: 'https://www.epfl.ch/en/'
@@ -131,7 +131,7 @@ work:
     date_start: 2019-09-01
     date_end: 2020-01-31
     summary: |
-      Analysis, design and implementation of a bio-inspired passive tail for amphibious robots under the supervision of [Prof. Auke Ijspeert](https://www.epfl.ch/labs/biorob/people/ijspeert).
+      Analysis, design and implementation of a bio-inspired passive tail for amphibious robots with [Prof. Auke Ijspeert](https://www.epfl.ch/labs/biorob/people/ijspeert).
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -209,8 +209,8 @@ work:
 
 ## About Me
 
-I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea) at [ETH AI Center](https://ai.ethz.ch/), Switzerland. Before that, I received my master's degree in [Robotics, Systems and Control](https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/robotics-systems-and-control.html) from [ETH Zurich](https://ethz.ch/en.html) and my bachelor’s degree from [Tongji University](https://en.tongji.edu.cn/).
+I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea) at [ETH AI Center](https://ai.ethz.ch/), Switzerland. Since April 2026, I have been a Student Researcher in the [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) team at [Google DeepMind](https://deepmind.google/).
 
-During my master studies, I worked on structured motion representation and active learning methods at the [Biomimetic Robotics Lab](https://biomimetics.mit.edu/) at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU). Prior to that, I was engaged in agile motion imitation from limited demonstrations and intrinsic skill exploration with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius) at the [Autonomous Learning Group](https://al.is.mpg.de/) at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/), Tübingen, Germany.
+During my studies, I worked on structured motion representation and active learning methods at the [Biomimetic Robotics Lab](https://biomimetics.mit.edu/) at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU). Prior to that, I was engaged in agile motion imitation from limited demonstrations and intrinsic skill exploration with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius) at the [Autonomous Learning Group](https://al.is.mpg.de/) at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/), Germany.
 
 My research interests focus on algorithms that can enable autonomous agents to acquire complex behaviors through learning, especially general-purpose methods that could enable any autonomous system to learn to solve any task. On legged robots particularly, I am thrilled to apply these techniques to achieve animal-level agility and naturalness.
