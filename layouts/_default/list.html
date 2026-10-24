@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="page-offset">
+  <header class="wrap list-hero">
+    <h1 class="headline-section">{{ .Title }}</h1>
+    {{ with .Content }}<div class="lead" style="margin-top:16px">{{ . }}</div>{{ end }}
+  </header>
+  <div class="wrap-wide" style="padding-bottom: clamp(80px, 10vw, 140px)">
+    <div class="tile-grid">
+      {{ range $i, $p := .Pages.ByDate.Reverse }}
+      {{ $url := $p.Params.external_link | default $p.RelPermalink }}
+      <article class="tile" data-reveal style="--i:{{ mod $i 2 }}">
+        {{ with $p.Resources.GetMatch "featured*" }}
+        <div class="tile-media">{{ partial "img.html" (dict "res" . "widths" (slice 480 800 1200) "sizes" "(max-width: 820px) 100vw, 640px" "alt" $p.Title "style" (printf "view-transition-name: media-%s" $p.File.ContentBaseName)) }}</div>
+        {{ end }}
+        <div class="tile-body">
+          <span class="eyebrow accent">{{ if eq $p.Section "publication" }}{{ partial "venue.html" $p }}{{ else if not $p.Date.IsZero }}{{ $p.Date.Format "January 2006" }}{{ end }}</span>
+          <h3 class="headline-tile"><a href="{{ $url }}"{{ if $p.Params.external_link }} target="_blank" rel="noopener"{{ end }}>{{ $p.Title }}</a></h3>
+          {{ if $p.Params.authors }}<p class="authors">{{ partial "authors.html" $p }}</p>{{ end }}
+          {{ with $p.Params.summary }}<p class="summary">{{ . | plainify }}</p>{{ end }}
+          {{ partial "pub-links.html" (dict "page" $p) }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

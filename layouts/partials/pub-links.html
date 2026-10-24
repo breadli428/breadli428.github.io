@@ -1,0 +1,25 @@
+{{- /* Link chips for a publication/post/talk. Params: page, cite (bool: include Cite button), class */ -}}
+{{- $p := .page -}}
+{{- $links := slice -}}
+{{- with $p.Params.url_pdf }}{{ $links = $links | append (dict "name" "Paper" "url" . "icon" "fa-regular fa-file-lines") }}{{ end -}}
+{{- with $p.Params.url_code }}{{ $links = $links | append (dict "name" "Code" "url" . "icon" "fa-brands fa-github") }}{{ end -}}
+{{- with $p.Params.url_project }}{{ $links = $links | append (dict "name" "Project" "url" . "icon" "fa-solid fa-globe") }}{{ end -}}
+{{- range $p.Params.links -}}
+  {{- if .url }}{{ $links = $links | append (dict "name" .name "url" .url "icon" (cond (eq (lower .name) "project") "fa-solid fa-globe" "fa-solid fa-link")) }}{{ end -}}
+{{- end -}}
+{{- with $p.Params.url_video }}{{ $links = $links | append (dict "name" "Video" "url" . "icon" "fa-brands fa-youtube") }}{{ end -}}
+{{- with $p.Params.url_slides }}{{ $links = $links | append (dict "name" "Slides" "url" . "icon" "fa-solid fa-person-chalkboard") }}{{ end -}}
+{{- with $p.Params.url_poster }}{{ $links = $links | append (dict "name" "Poster" "url" . "icon" "fa-regular fa-image") }}{{ end -}}
+{{- with $p.Params.url_dataset }}{{ $links = $links | append (dict "name" "Dataset" "url" . "icon" "fa-solid fa-database") }}{{ end -}}
+{{- with $p.Params.url_source }}{{ $links = $links | append (dict "name" "Source" "url" . "icon" "fa-solid fa-link") }}{{ end -}}
+{{- $cite := and .cite ($p.Resources.GetMatch "cite.bib") -}}
+{{- if or $links $cite -}}
+<div class="{{ .class | default "tile-links" }}">
+  {{- range $links }}
+  <a class="{{ $.chip | default "chip" }}" href="{{ .url }}" target="_blank" rel="noopener"><i class="{{ .icon }}" aria-hidden="true"></i>{{ .name }}</a>
+  {{- end }}
+  {{- if $cite }}
+  <button class="{{ $.chip | default "chip" }}" type="button" data-cite="cite-modal"><i class="fa-solid fa-quote-right" aria-hidden="true"></i>Cite</button>
+  {{- end }}
+</div>
+{{- end -}}

@@ -1,0 +1,2 @@
+{{- $m := dict "paper-conference" "Conference paper" "article-journal" "Journal article" "article" "Preprint" "thesis" "Thesis" "book" "Book" "chapter" "Book chapter" "report" "Report" -}}
+{{- index $m . | default (humanize .) -}}

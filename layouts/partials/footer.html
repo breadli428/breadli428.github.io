@@ -1,0 +1,19 @@
+{{- $lic := site.Params.footer.copyright.license }}
+<footer class="footer">
+  <div class="footer-inner">
+    <p>
+      Copyright © {{ now.Year }} {{ site.Title }}.
+      {{- if $lic.enable }}
+        {{- $code := "by" }}
+        {{- if not $lic.allow_commercial }}{{ $code = printf "%s-nc" $code }}{{ end }}
+        {{- if not $lic.allow_derivatives }}{{ $code = printf "%s-nd" $code }}{{ else if $lic.share_alike }}{{ $code = printf "%s-sa" $code }}{{ end }}
+        Licensed under <a href="https://creativecommons.org/licenses/{{ $code }}/4.0/" target="_blank" rel="noopener license">CC {{ upper $code }} 4.0</a>.
+      {{- end }}
+    </p>
+    <nav aria-label="Footer">
+      {{- range site.Menus.main }}
+      <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{- end }}
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,2 @@
+<details class="spoiler"><summary>{{ .Get "text" | default "Details" | markdownify }}</summary>
+<div>{{ .Inner | .Page.RenderString (dict "display" "block") }}</div></details>

@@ -1,0 +1,15 @@
+{{- /* Author line for a page. "admin" is replaced by the site owner's profile name and highlighted. */ -}}
+{{- $p := . -}}
+{{- $notes := $p.Params.author_notes | default slice -}}
+{{- $me := (site.GetPage "authors/admin").Title -}}
+{{- $out := slice -}}
+{{- range $i, $a := $p.Params.authors -}}
+  {{- $note := index $notes $i | default "" -}}
+  {{- $attr := cond (ne $note "") (printf ` title="%s"` (htmlEscape $note)) "" -}}
+  {{- if eq $a "admin" -}}
+    {{- $out = $out | append (printf `<span class="me"%s>%s</span>` $attr $me) -}}
+  {{- else -}}
+    {{- $out = $out | append (printf `<span%s>%s</span>` $attr $a) -}}
+  {{- end -}}
+{{- end -}}
+{{- delimit $out ", " | safeHTML -}}

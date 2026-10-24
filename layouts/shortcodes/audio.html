@@ -1,0 +1,1 @@
+{{- with .Page.Resources.Get (.Get "src") }}<audio controls src="{{ .RelPermalink }}" style="width:100%"></audio>{{ else }}<audio controls src="{{ .Get "src" }}" style="width:100%"></audio>{{ end -}}

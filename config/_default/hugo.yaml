@@ -21,8 +21,6 @@ removePathAccents: true
 ## ADVANCED
 ############################
 
-build:
-  writeStats: true
 enableGitInfo: false
 summaryLength: 30
 pagination:
@@ -35,7 +33,7 @@ permalinks:
   authors: '/author/:slug/'
 disableAliases: true
 outputs:
-  home: [HTML, RSS, headers, redirects, backlinks]
+  home: [HTML, RSS]
   section: [HTML, RSS]
 imaging:
   resampleFilter: lanczos
@@ -47,10 +45,15 @@ taxonomies:
   tag: tags
   publication_type: publication_types
 markup:
-  _merge: deep
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['$$', '$$'], ['\\[', '\\]']]
+          inline: [['$', '$'], ['\\(', '\\)']]
   highlight:
     lineNos: false
-security:
-  _merge: deep
-sitemap:
-  _merge: deep
+    noClasses: false

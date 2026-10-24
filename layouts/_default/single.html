@@ -1,0 +1,20 @@
+{{ define "main" }}
+<article class="page-offset">
+  <header class="page-hero wrap">
+    {{ with .Parent }}{{ if not .IsHome }}<a class="back-link" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end }}
+    {{ if not .Date.IsZero }}<span class="eyebrow">{{ .Date.Format "January 2, 2006" }}</span>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="authors">{{ . }}</p>{{ end }}
+    {{ with .Params.external_link }}<div class="btn-row"><a class="btn btn-primary" href="{{ . }}" target="_blank" rel="noopener">Learn more</a></div>{{ end }}
+    {{ partial "pub-links.html" (dict "page" . "class" "btn-row" "chip" "btn btn-ghost btn-small") }}
+  </header>
+  {{ with .Resources.GetMatch "featured*" }}
+  <figure class="page-figure">
+    {{ partial "img.html" (dict "res" . "widths" (slice 800 1200 1800) "sizes" "(max-width: 1200px) 100vw, 1200px" "alt" $.Title "eager" true "style" (printf "view-transition-name: media-%s" $.File.ContentBaseName)) }}
+  </figure>
+  {{ end }}
+  <div class="article-layout" style="grid-template-columns: minmax(0, 760px); justify-content: center">
+    <div class="prose" data-pagefind-body>{{ .Content }}</div>
+  </div>
+</article>
+{{ end }}

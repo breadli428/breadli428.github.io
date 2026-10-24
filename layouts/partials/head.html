@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) }}
+{{- $desc := site.Params.marketing.seo.description }}
+{{- with .Params.summary }}{{ $desc = . | plainify }}{{ end }}
+{{- if and (not .Params.summary) (not .IsHome) .Description }}{{ $desc = .Description }}{{ end }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Apply saved theme before first paint to avoid a flash. */}}
+<script>
+  try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  document.documentElement.classList.add('js');
+</script>
+
+{{- $icon := resources.Get "media/icon.png" }}
+{{- with $icon }}
+<link rel="icon" type="image/png" href="{{ (.Resize "64x64 png").RelPermalink }}">
+<link rel="apple-touch-icon" href="{{ (.Resize "180x180 png").RelPermalink }}">
+{{- end }}
+
+{{- /* Social cards */}}
+{{- $og := "" }}
+{{- with .Resources.GetMatch "featured*" }}{{ $og = (.Resize "1200x webp q80").Permalink }}{{ end }}
+{{- if not $og }}{{ with resources.Get (printf "media/%s" (site.Home.Params.hero.image | default "sequence.png")) }}{{ $og = (.Resize "1200x jpg q80").Permalink }}{{ end }}{{ end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $og }}<meta property="og:image" content="{{ . }}">{{ end }}
+<meta name="twitter:card" content="summary_large_image">
+{{- with site.Params.marketing.seo.twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
+
+{{- with site.Params.marketing.verification.google }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css" crossorigin="anonymous">
+
+{{- /* Pages with $…$ math load KaTeX. */}}
+{{- if or (findRE `\$[^$\s]` .RawContent 1) (findRE `\$\$` .RawContent 1) }}
+  {{- .Store.Set "math" true }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" crossorigin="anonymous">
+{{- end }}
+
+{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{- if hugo.IsProduction }}
+{{- with site.Params.marketing.analytics.google_analytics }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ . }}');
+</script>
+{{- end }}
+{{- end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article class="page-offset" data-pagefind-body>
+  <header class="page-hero wrap">
+    <a class="back-link" href="{{ "/#talks" | relURL }}">Talks</a>
+    <span class="eyebrow">{{ .Params.event | default "Talk" }}</span>
+    <h1>{{ .Title }}</h1>
+    <p class="meta">{{ .Date.Format "Monday, January 2, 2006" }}{{ if not .Params.all_day }} · {{ .Date.Format "3:04 PM" }}{{ end }}</p>
+    {{ with .Params.event_url }}
+    <div class="btn-row"><a class="btn btn-primary" href="{{ . }}" target="_blank" rel="noopener">Visit host</a></div>
+    {{ end }}
+    {{ partial "pub-links.html" (dict "page" . "class" "btn-row" "chip" "btn btn-ghost btn-small") }}
+  </header>
+
+  {{ with .Resources.GetMatch "featured*" }}
+  {{ $flat := .Process "jpg q90" }}
+  <figure class="page-figure logo" data-reveal="scale" style="background: {{ index $flat.Colors 0 | default "#fff" }}">
+    {{ partial "img.html" (dict "res" $flat "widths" (slice 800 1200 1800) "sizes" "(max-width: 1200px) 100vw, 1200px" "alt" $.Title "eager" true "style" (printf "view-transition-name: media-%s" $.File.ContentBaseName)) }}
+  </figure>
+  {{ end }}
+
+  <div class="wrap abstract">
+    {{ with .Params.abstract }}
+    <h2 data-reveal>Abstract</h2>
+    <p data-reveal>{{ . | markdownify }}</p>
+    {{ end }}
+    <div class="info-grid">
+      {{ with .Params.location }}
+      <div class="fact" data-reveal><h3>Location</h3>
+        <ul><li style="font-size:17px">{{ . }}{{ with $.Params.address }}<small>{{ delimit (slice .street .city .country) ", " }}</small>{{ end }}</li></ul>
+      </div>
+      {{ end }}
+      <div class="fact" data-reveal style="--i:1"><h3>Speaker</h3><ul><li style="font-size:17px">{{ partial "authors.html" . }}</li></ul></div>
+    </div>
+    {{ with .Content }}{{ if ne (trim (. | plainify) " \n") "" }}<div class="prose" style="margin-top:48px">{{ . }}</div>{{ end }}{{ end }}
+  </div>
+</article>
+{{ end }}

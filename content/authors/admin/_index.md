@@ -58,6 +58,7 @@ interests:
 education:
   - area: PhD in Artificial Intelligence
     institution: ETH AI Center
+    institution_logo: eth-ai-center
     date_start: 2023-11-01
     date_end: ''
     summary: |
@@ -67,6 +68,7 @@ education:
     #   url: 'https://example.com'
   - area: MSc in Robotics, Systems and Control
     institution: ETH Zurich
+    institution_logo: eth
     date_start: 2020-09-01
     date_end: 2023-07-31
     summary: |

@@ -1,0 +1,32 @@
+{{- $talks := (where site.RegularPages "Section" "event").ByDate.Reverse -}}
+<section class="section dark on-dark" id="talks">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Talks.</h2>
+      <p class="lead">Invited presentations at labs and companies around the world.</p>
+    </div>
+  </div>
+  <div class="carousel" data-carousel data-reveal="fade">
+    <div class="carousel-track" role="list" style="--card-w: min(360px, 80vw)">
+      {{ range $talks }}
+      {{ $p := . }}
+      <a class="talk-card" role="listitem" href="{{ .RelPermalink }}">
+        {{ with .Resources.GetMatch "featured*" }}
+        {{- /* Flatten transparent logos onto white before picking the backdrop colour. */}}
+        {{ $flat := .Process "jpg q90" }}
+        <div class="tile-media logo" style="background: {{ index $flat.Colors 0 | default "#fff" }}">{{ partial "img.html" (dict "res" $flat "widths" (slice 400 720) "sizes" "360px" "alt" "" "style" (printf "view-transition-name: media-%s" $p.File.ContentBaseName)) }}</div>
+        {{ end }}
+        <div class="talk-body">
+          <span class="eyebrow">{{ if gt .Date now }}<span class="upcoming">Upcoming · </span>{{ end }}{{ .Date.Format "January 2, 2006" }}</span>
+          <h3>{{ .Title }}</h3>
+          <p class="where">{{ .Params.location }}</p>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" type="button" data-prev aria-label="Previous">{{ partial "svg/chevron-left.html" }}</button>
+      <button class="carousel-btn" type="button" data-next aria-label="Next">{{ partial "svg/chevron-right.html" }}</button>
+    </div>
+  </div>
+</section>

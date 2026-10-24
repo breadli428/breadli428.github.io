@@ -1,0 +1,39 @@
+{{- $a := .author -}}
+<section class="section alt" id="experience">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Experience.</h2>
+      <p class="lead">Labs and teams I’ve had the privilege to learn from.</p>
+    </div>
+    <div class="exp-cols">
+      <div class="exp-col">
+        <h3 data-reveal>Work</h3>
+        {{ range $i, $w := $a.Params.work }}
+        <article class="exp-card" data-reveal style="--i:{{ $i }}">
+          {{ partial "exp-logo.html" (dict "logo" $w.company_logo "name" $w.company_name) }}
+          <div>
+            <span class="when">{{ (time $w.date_start).Format "Jan 2006" }} – {{ with $w.date_end }}{{ (time .).Format "Jan 2006" }}{{ else }}<span class="now">Present</span>{{ end }}</span>
+            <h4>{{ $w.position }}</h4>
+            <p class="org"><a href="{{ $w.company_url }}" target="_blank" rel="noopener">{{ $w.company_name }}</a></p>
+            <div class="desc">{{ $w.summary | markdownify }}</div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      <div class="exp-col">
+        <h3 data-reveal>Education</h3>
+        {{ range $i, $e := $a.Params.education }}
+        <article class="exp-card" data-reveal style="--i:{{ $i }}">
+          {{ partial "exp-logo.html" (dict "logo" $e.institution_logo "name" $e.institution) }}
+          <div>
+            <span class="when">{{ (time $e.date_start).Format "Jan 2006" }} – {{ with $e.date_end }}{{ (time .).Format "Jan 2006" }}{{ else }}<span class="now">Present</span>{{ end }}</span>
+            <h4>{{ $e.area }}</h4>
+            <p class="org">{{ $e.institution }}</p>
+            <div class="desc">{{ $e.summary | markdownify }}</div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

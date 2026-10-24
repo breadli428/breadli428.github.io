@@ -1,0 +1,12 @@
+{{- $a := .author -}}
+<section class="section alt contact" id="contact">
+  <div class="wrap">
+    <h2 class="headline-hero" data-reveal>Let’s <span class="gradient-text">connect.</span></h2>
+    <p class="lead" data-reveal style="--i:1">I’m always happy to talk about robot learning, collaborations, or anything in between.</p>
+    <div class="btn-row center" data-reveal style="--i:2">
+      {{ range .page.Params.contact.buttons }}
+      <a class="btn {{ if eq .primary true }}btn-primary{{ else }}btn-secondary{{ end }}" href="{{ .url }}" target="_blank" rel="noopener">{{ partial "icon.html" .icon }}{{ .text }}</a>
+      {{ end }}
+    </div>
+  </div>
+</section>

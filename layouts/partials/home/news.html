@@ -1,0 +1,70 @@
+{{- $news := sort site.Data.news "date" "desc" -}}
+{{- $n := .page.Params.news_latest | default 8 -}}
+<section class="section alt" id="news">
+  <div class="wrap-wide">
+    <div class="section-head section-head-row" data-reveal>
+      <div>
+        <h2 class="headline-section">The latest.</h2>
+        <p class="lead">Papers, talks, awards and new chapters.</p>
+      </div>
+    </div>
+  </div>
+  <div class="carousel" data-carousel data-reveal="fade">
+    <div class="carousel-track" role="list" style="--card-w: min(380px, 80vw)">
+      {{ range $i, $it := first $n $news }}
+      {{ $d := time $it.date }}
+      <button class="news-card{{ if $it.highlight }} highlight{{ end }}" type="button" role="listitem" data-news="news-{{ $i }}">
+        <span class="eyebrow">{{ $d.Format "January 2, 2006" }}{{ if $it.highlight }} <span class="badge">Milestone</span>{{ end }}</span>
+        <h3>{{ $it.title }}</h3>
+        <div class="body">{{ $it.body | safeHTML }}</div>
+        <span class="more">Read more</span>
+      </button>
+      <template id="news-{{ $i }}">
+        <span class="eyebrow{{ if $it.highlight }} accent{{ end }}">{{ $d.Format "January 2, 2006" }}</span>
+        <h2>{{ $it.title }}</h2>
+        <div class="body">{{ $it.body | safeHTML }}</div>
+      </template>
+      {{ end }}
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" type="button" data-prev aria-label="Previous">{{ partial "svg/chevron-left.html" }}</button>
+      <button class="carousel-btn" type="button" data-next aria-label="Next">{{ partial "svg/chevron-right.html" }}</button>
+    </div>
+  </div>
+
+  <div class="wrap news-all">
+    <button class="btn btn-secondary news-all-toggle" type="button" data-archive-toggle data-label="Show all {{ len $news }} news" aria-expanded="false" aria-controls="news-archive">
+      <span>Show all {{ len $news }} news</span>
+    </button>
+    <div class="news-archive" id="news-archive" hidden>
+      {{- $years := slice -}}
+      {{- range $news }}{{ $y := (time .date).Format "2006" }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
+      <div class="year-tabs" role="group" aria-label="Filter by year">
+        <button class="year-tab" type="button" data-year="all" aria-pressed="true">All</button>
+        {{ range $years }}<button class="year-tab" type="button" data-year="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}
+      </div>
+      {{ range $years }}
+      {{ $y := . }}
+      <div class="timeline-group" data-year="{{ $y }}">
+        <h3 class="timeline-year">{{ $y }}</h3>
+        <ul class="timeline">
+          {{ range $news }}{{ if eq ((time .date).Format "2006") $y }}
+          <li class="timeline-item{{ if .highlight }} highlight{{ end }}">
+            <time datetime="{{ .date }}">{{ (time .date).Format "Jan 2" }}</time>
+            <details>
+              <summary><span>{{ .title }}{{ if .highlight }}<span class="badge">Milestone</span>{{ end }}</span></summary>
+              <div class="body">{{ .body | safeHTML }}</div>
+            </details>
+          </li>
+          {{ end }}{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <dialog class="modal" id="news-modal" aria-label="News">
+    <button class="modal-close" type="button" data-close aria-label="Close">{{ partial "svg/close.html" }}</button>
+    <div class="modal-body" data-slot></div>
+  </dialog>
+</section>

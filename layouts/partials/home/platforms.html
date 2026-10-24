@@ -1,0 +1,21 @@
+{{- $robots := (where site.RegularPages "Section" "platform").ByDate.Reverse -}}
+<section class="section" id="platforms">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Robotic platforms.</h2>
+      <p class="lead">The robots I learned and grew up with.</p>
+    </div>
+    <div class="platform-grid">
+      {{ range $i, $p := $robots }}
+      <a class="platform" href="{{ $p.Params.external_link | default $p.RelPermalink }}"{{ if $p.Params.external_link }} target="_blank" rel="noopener"{{ end }} data-reveal="scale" style="--i:{{ mod $i 3 }}">
+        {{ with $p.Resources.GetMatch "featured*" }}{{ partial "img.html" (dict "res" . "widths" (slice 400 800) "sizes" "(max-width: 600px) 100vw, 400px" "alt" $p.Title) }}{{ end }}
+        <div class="platform-body">
+          <span class="year">Since {{ $p.Date.Format "2006" }}</span>
+          <h3>{{ $p.Title }}</h3>
+          <p>{{ $p.Params.summary }}</p>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>

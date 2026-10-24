@@ -1,0 +1,58 @@
+{{ define "main" }}
+<article class="page-offset" data-pagefind-body>
+  <header class="page-hero wrap">
+    <a class="back-link" href="{{ "/#publications" | relURL }}">Publications</a>
+    <span class="eyebrow">{{ partial "venue.html" . }}</span>
+    <h1>{{ .Title }}</h1>
+    <p class="authors">{{ partial "authors.html" . }}</p>
+    {{ with .Params.publication }}<p class="meta">{{ . | markdownify }}</p>{{ end }}
+    {{ partial "pub-links.html" (dict "page" . "cite" true "class" "btn-row" "chip" "btn btn-ghost btn-small") }}
+  </header>
+
+  {{ with .Resources.GetMatch "featured*" }}
+  <figure class="page-figure" data-reveal="scale">
+    {{ partial "img.html" (dict "res" . "widths" (slice 800 1200 1800) "sizes" "(max-width: 1200px) 100vw, 1200px" "alt" ($.Params.image.caption | default $.Title) "eager" true "style" (printf "view-transition-name: media-%s" $.File.ContentBaseName)) }}
+    {{ with $.Params.image.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{ end }}
+
+  <div class="wrap abstract">
+    {{ with .Params.abstract }}
+    <h2 data-reveal>Abstract</h2>
+    <div data-reveal>{{ . | markdownify | safeHTML | printf "<p>%s</p>" | safeHTML }}</div>
+    {{ end }}
+    {{ if .Params.author_notes }}
+    <div class="info-grid">
+      {{ $notes := .Params.author_notes }}
+      {{ $seen := slice }}
+      {{ range $notes }}{{ range split . ". " }}{{ $n := strings.TrimSuffix "." . }}{{ if not (in $seen $n) }}{{ $seen = $seen | append $n }}{{ end }}{{ end }}{{ end }}
+      <div class="fact" data-reveal>
+        <h3>Affiliations</h3>
+        <ul>{{ range $seen }}<li style="font-size:15px">{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{ with .Params.publication_types }}
+      <div class="fact" data-reveal style="--i:1">
+        <h3>Published</h3>
+        <ul><li style="font-size:15px">{{ $.Date.Format "January 2006" }}<small>{{ partial "pub-type.html" (index . 0) }}</small></li></ul>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ with .Content }}{{ if ne (trim (. | plainify) " \n") "" }}<div class="prose" style="margin-top:48px">{{ . }}</div>{{ end }}{{ end }}
+  </div>
+
+  {{ with .Resources.GetMatch "cite.bib" }}
+  <dialog class="modal" id="cite-modal" aria-label="Cite">
+    <button class="modal-close" type="button" data-close aria-label="Close">{{ partial "svg/close.html" }}</button>
+    <div class="modal-body">
+      <h2>Cite</h2>
+      <pre id="bibtex">{{ .Content | strings.TrimSpace }}</pre>
+      <div class="btn-row">
+        <button class="btn btn-primary" type="button" data-copy="bibtex">Copy BibTeX</button>
+        <a class="btn btn-secondary" href="{{ .RelPermalink }}" download>Download .bib</a>
+      </div>
+    </div>
+  </dialog>
+  {{ end }}
+</article>
+{{ end }}

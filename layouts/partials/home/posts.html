@@ -1,0 +1,26 @@
+{{- $posts := (where site.RegularPages "Section" "post").ByDate.Reverse -}}
+{{- with $posts -}}
+<section class="section" id="posts">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Writing.</h2>
+      <p class="lead">Longer reads on the ideas behind the research.</p>
+    </div>
+    <div class="tile-grid">
+      {{ range $i, $p := . }}
+      <article class="tile{{ if eq $i 0 }} feature{{ end }}" data-reveal>
+        {{ with $p.Resources.GetMatch "featured*" }}
+        <div class="tile-media">{{ partial "img.html" (dict "res" . "widths" (slice 600 1000 1400) "sizes" "(max-width: 820px) 100vw, 700px" "alt" ($p.Params.image.caption | default $p.Title) "style" (printf "view-transition-name: media-%s" $p.File.ContentBaseName)) }}</div>
+        {{ end }}
+        <div class="tile-body">
+          <span class="eyebrow accent">{{ $p.Date.Format "January 2006" }} · {{ $p.ReadingTime }} min read</span>
+          <h3 class="headline-tile"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+          {{ with $p.Params.summary }}<p class="summary">{{ . | plainify }}</p>{{ end }}
+          {{ partial "pub-links.html" (dict "page" $p) }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{- end -}}

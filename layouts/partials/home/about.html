@@ -1,0 +1,42 @@
+{{- $a := .author -}}
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <aside class="about-portrait" data-reveal>
+      {{ with $a.Resources.GetMatch "avatar*" }}
+        {{ partial "img.html" (dict "res" (.Fill "600x600 Center") "widths" (slice 300 600) "sizes" "300px" "alt" $a.Title) }}
+      {{ end }}
+      <p class="name">{{ $a.Title }}</p>
+      <p class="role">{{ $a.Params.role }}</p>
+      <ul class="org-list">
+        {{ range $a.Params.organizations }}<li><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></li>{{ end }}
+      </ul>
+      <ul class="social">
+        {{ range $a.Params.profiles }}
+        <li><a href="{{ cond (hasPrefix .url "uploads/") (.url | relURL) .url }}" target="_blank" rel="noopener" aria-label="{{ .label | default (replaceRE `^.*/` "" .icon) }}" title="{{ .label | default (replaceRE `^.*/` "" .icon | humanize) }}">{{ partial "icon.html" .icon }}</a></li>
+        {{ end }}
+      </ul>
+    </aside>
+    <div class="about-bio">
+      <h2 class="headline-section" data-reveal>Hello, I’m <span class="gradient-text">{{ $a.Params.first_name }}</span>.</h2>
+      <div class="prose" data-reveal style="--i:1">{{ $a.Content }}</div>
+      <div class="btn-row" data-reveal style="--i:2">
+        <a class="btn btn-primary" href="{{ "uploads/resume.pdf" | relURL }}" target="_blank" rel="noopener">Download CV</a>
+        <a class="more" href="#contact">Get in touch</a>
+      </div>
+      <div class="facts">
+        <div class="fact" data-reveal>
+          <h3>Interests</h3>
+          <ul>{{ range $a.Params.interests }}<li>{{ . }}</li>{{ end }}</ul>
+        </div>
+        <div class="fact" data-reveal style="--i:1">
+          <h3>Education</h3>
+          <ul>
+            {{ range $a.Params.education }}
+            <li>{{ .area }}<small>{{ .institution }} · {{ (time .date_start).Format "2006" }}–{{ with .date_end }}{{ (time .).Format "2006" }}{{ else }}Present{{ end }}</small></li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

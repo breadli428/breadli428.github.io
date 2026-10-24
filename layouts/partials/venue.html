@@ -1,0 +1,6 @@
+{{- /* Short venue + year for a publication, e.g. "CoRL 2022 · Best Paper Award Finalist". */ -}}
+{{- $v := .Params.publication_short | default .Params.publication | default "" -}}
+{{- $v = replaceRE `^\s*In\s+` "" $v -}}
+{{- $parts := split $v `<span class="middot-divider"></span>` -}}
+<span class="venue">{{ index $parts 0 | markdownify }} {{ .Date.Format "2006" }}{{ range after 1 $parts }}<span class="middot-divider"></span>{{ . | safeHTML }}{{ end }}</span>
+{{- /**/ -}}

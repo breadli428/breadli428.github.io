@@ -1,0 +1,26 @@
+{{- /* Responsive image from a Hugo resource.
+       Params: res (resource), widths (slice), sizes (string), alt, class, eager (bool), style */ -}}
+{{- $r := .res -}}
+{{- with $r -}}
+{{- if in (slice "svg" "gif") .MediaType.SubType -}}
+<img src="{{ .RelPermalink }}" alt="{{ $.alt }}"{{ with $.class }} class="{{ . }}"{{ end }}{{ with $.style }} style="{{ . | safeCSS }}"{{ end }} loading="{{ cond (default false $.eager) "eager" "lazy" }}" decoding="async">
+{{- else -}}
+{{- $widths := $.widths | default (slice 480 800 1200) -}}
+{{- $srcset := slice -}}
+{{- $fallback := "" -}}
+{{- range $widths -}}
+  {{- if le . $r.Width -}}
+    {{- $img := $r.Resize (printf "%dx webp q78" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) -}}
+    {{- $fallback = $img -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $fallback -}}
+  {{- $fallback = $r.Resize (printf "%dx webp q78" $r.Width) -}}
+  {{- $srcset = slice (printf "%s %dw" $fallback.RelPermalink $r.Width) -}}
+{{- end -}}
+<img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ $.sizes | default "100vw" }}"
+     width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ $.alt }}"{{ with $.class }} class="{{ . }}"{{ end }}{{ with $.style }} style="{{ . | safeCSS }}"{{ end }}
+     loading="{{ cond (default false $.eager) "eager" "lazy" }}" decoding="async">
+{{- end -}}
+{{- end -}}

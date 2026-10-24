@@ -1,0 +1,15 @@
+{{- /* Map HugoBlox-style icon names (e.g. "brands/github", "academicons/cv", "at-symbol") to icon-font classes. */ -}}
+{{- $name := . -}}
+{{- $class := "" -}}
+{{- if hasPrefix $name "brands/" -}}
+  {{- $b := strings.TrimPrefix "brands/" $name -}}
+  {{- if eq $b "x" }}{{ $b = "x-twitter" }}{{ end -}}
+  {{- $class = printf "fa-brands fa-%s" $b -}}
+{{- else if hasPrefix $name "academicons/" -}}
+  {{- $class = printf "ai ai-%s" (strings.TrimPrefix "academicons/" $name) -}}
+{{- else -}}
+  {{- $map := dict "at-symbol" "at" "envelope" "envelope" "document" "file-lines" "link" "link" -}}
+  {{- $class = printf "fa-solid fa-%s" (index $map $name | default $name) -}}
+{{- end -}}
+<i class="{{ $class }}" aria-hidden="true"></i>
+{{- /**/ -}}

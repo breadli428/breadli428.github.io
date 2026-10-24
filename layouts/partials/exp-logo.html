@@ -1,0 +1,8 @@
+<div class="exp-logo" aria-hidden="true">
+  {{- with and .logo (resources.Get (printf "media/icons/%s.svg" .logo)) -}}
+    <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+  {{- else -}}
+    {{- $words := split (replaceRE `[^A-Za-z ]` "" .name) " " -}}
+    {{- range first 2 $words }}{{ substr . 0 1 }}{{ end -}}
+  {{- end -}}
+</div>

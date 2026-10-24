@@ -1,0 +1,55 @@
+{{- $pubs := (where site.RegularPages "Section" "publication").ByDate.Reverse -}}
+{{- $featured := where $pubs "Params.featured" true -}}
+{{- $show := 7 -}}
+<section class="section" id="publications">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Featured research.</h2>
+      <p class="lead">Learning agile, natural and general robot behavior, from world models to imitation.</p>
+    </div>
+    <div class="tile-grid" id="featured-grid">
+      {{ range $i, $p := $featured }}
+      {{ $extra := ge $i $show }}
+      <article class="tile{{ if eq $i 0 }} feature{{ end }}{{ if $extra }} is-extra{{ end }}" {{ if $extra }}hidden{{ else }}data-reveal style="--i:{{ mod $i 2 }}"{{ end }}>
+        {{ with $p.Resources.GetMatch "featured*" }}
+        <div class="tile-media contain">
+          {{ partial "img.html" (dict "res" . "widths" (slice 480 800 1200) "sizes" (cond (eq $i 0) "(max-width: 820px) 100vw, 700px" "(max-width: 820px) 100vw, 640px") "alt" ($p.Params.image.caption | default $p.Title) "style" (printf "view-transition-name: media-%s" $p.File.ContentBaseName)) }}
+        </div>
+        {{ end }}
+        <div class="tile-body">
+          <span class="eyebrow accent">{{ partial "venue.html" $p }}</span>
+          <h3 class="headline-tile"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+          <p class="authors">{{ partial "authors.html" $p }}</p>
+          {{ with $p.Params.summary }}<p class="summary">{{ . | plainify }}</p>{{ end }}
+          {{ partial "pub-links.html" (dict "page" $p) }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ if gt (len $featured) $show }}
+    <div class="show-more"><button class="btn btn-secondary" type="button" data-show-more="featured-grid">Show {{ sub (len $featured) $show }} more</button></div>
+    {{ end }}
+  </div>
+
+  <div class="wrap" style="margin-top: clamp(80px, 10vw, 128px)">
+    <div class="section-head section-head-row" data-reveal>
+      <h2 class="headline-section" style="font-size: clamp(32px, 4vw, 48px)">All publications.</h2>
+      <a class="more" href="https://scholar.google.com/citations?hl=en&user=kw1-DxQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+    {{ range $pubs.GroupByDate "2006" }}
+    <h3 class="pub-year" data-reveal>{{ .Key }}</h3>
+    <ul class="pub-list">
+      {{ range .Pages }}
+      <li class="pub-item" data-reveal>
+        <div>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="authors">{{ partial "authors.html" . }}</p>
+          <p class="venue">{{ .Params.publication | default .Params.publication_short | markdownify }}{{ if and .Params.publication (findRE `<strong` .Params.publication_short) }}{{ partial "venue-badge.html" . }}{{ end }}</p>
+        </div>
+        {{ partial "pub-links.html" (dict "page" .) }}
+      </li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
+</section>

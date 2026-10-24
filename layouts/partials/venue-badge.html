@@ -1,0 +1,1 @@
+{{- range findRE `<strong[^>]*>[^<]*</strong>` .Params.publication_short -}}<span class="middot-divider"></span>{{ . | safeHTML }}{{- end -}}
