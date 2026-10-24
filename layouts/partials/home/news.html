@@ -1,29 +1,43 @@
 {{- $news := sort site.Data.news "date" "desc" -}}
-{{- $n := .page.Params.news_latest | default 8 -}}
+{{- $years := slice -}}
+{{- range $news }}{{ $y := (time .date).Format "2006" }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
 <section class="section alt" id="news">
   <div class="wrap-wide">
-    <div class="section-head section-head-row" data-reveal>
-      <div>
-        <h2 class="headline-section">The latest.</h2>
-        <p class="lead">Papers, talks, awards and new chapters.</p>
-      </div>
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">The latest.</h2>
+      <p class="lead">Papers, talks, awards and new chapters, year by year.</p>
+    </div>
+    <div class="year-nav" role="group" aria-label="Jump to year" data-reveal>
+      {{ range $i, $y := $years }}
+      <button class="year-pill" type="button" data-jump-year="{{ $y }}" aria-pressed="{{ cond (eq $i 0) "true" "false" }}">{{ $y }}</button>
+      {{ end }}
     </div>
   </div>
-  <div class="carousel" data-carousel data-reveal="fade">
-    <div class="carousel-track" role="list" style="--card-w: min(380px, 80vw)">
-      {{ range $i, $it := first $n $news }}
-      {{ $d := time $it.date }}
-      <button class="news-card{{ if $it.highlight }} highlight{{ end }}" type="button" role="listitem" data-news="news-{{ $i }}">
-        <span class="eyebrow">{{ $d.Format "January 2, 2006" }}{{ if $it.highlight }} <span class="badge">Milestone</span>{{ end }}</span>
-        <h3>{{ $it.title }}</h3>
-        <div class="body">{{ $it.body | safeHTML }}</div>
+  <div class="carousel" data-carousel data-news-carousel data-reveal="fade">
+    <div class="carousel-track news-track" role="list">
+      {{ range $y := $years }}
+      {{ $items := slice }}
+      {{ range $news }}{{ if eq ((time .date).Format "2006") $y }}{{ $items = $items | append . }}{{ end }}{{ end }}
+      {{ $milestones := len (where $items "highlight" true) }}
+      <div class="news-year" role="listitem" data-year-marker="{{ $y }}">
+        <span class="news-year-num">{{ $y }}</span>
+        <span class="news-year-meta">{{ len $items }} {{ cond (eq (len $items) 1) "update" "updates" }}{{ with $milestones }}<br>{{ . }} {{ cond (eq . 1) "milestone" "milestones" }}{{ end }}</span>
+      </div>
+      {{ range $items }}
+      {{ $d := time .date }}
+      {{ $id := printf "news-%s" (substr (md5 (printf "%s%s" .date .title)) 0 10) }}
+      <button class="news-card{{ if .highlight }} highlight{{ end }}" type="button" role="listitem" data-year="{{ $y }}" data-news="{{ $id }}">
+        <span class="eyebrow">{{ $d.Format "January 2, 2006" }}{{ if .highlight }} <span class="badge">Milestone</span>{{ end }}</span>
+        <h3>{{ .title }}</h3>
+        <div class="body">{{ .body | safeHTML }}</div>
         <span class="more">Read more</span>
       </button>
-      <template id="news-{{ $i }}">
-        <span class="eyebrow{{ if $it.highlight }} accent{{ end }}">{{ $d.Format "January 2, 2006" }}</span>
-        <h2>{{ $it.title }}</h2>
-        <div class="body">{{ $it.body | safeHTML }}</div>
+      <template id="{{ $id }}">
+        <span class="eyebrow{{ if .highlight }} accent{{ end }}">{{ $d.Format "January 2, 2006" }}</span>
+        <h2>{{ .title }}</h2>
+        <div class="body">{{ .body | safeHTML }}</div>
       </template>
+      {{ end }}
       {{ end }}
     </div>
     <div class="carousel-nav">
@@ -33,12 +47,10 @@
   </div>
 
   <div class="wrap news-all">
-    <button class="btn btn-secondary news-all-toggle" type="button" data-archive-toggle data-label="Show all {{ len $news }} news" aria-expanded="false" aria-controls="news-archive">
-      <span>Show all {{ len $news }} news</span>
+    <button class="btn btn-secondary news-all-toggle" type="button" data-archive-toggle data-label="View all {{ len $news }} as a list" aria-expanded="false" aria-controls="news-archive">
+      <span>View all {{ len $news }} as a list</span>
     </button>
     <div class="news-archive" id="news-archive" hidden>
-      {{- $years := slice -}}
-      {{- range $news }}{{ $y := (time .date).Format "2006" }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
       <div class="year-tabs" role="group" aria-label="Filter by year">
         <button class="year-tab" type="button" data-year="all" aria-pressed="true">All</button>
         {{ range $years }}<button class="year-tab" type="button" data-year="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}

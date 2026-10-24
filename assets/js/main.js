@@ -2,20 +2,34 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Theme: system → light → dark ---------- */
+  /* ---------- Theme: every click flips light ↔ dark ----------
+     Choosing the same theme as the OS clears the override, so the page
+     follows the system again from then on. */
   const themeBtn = document.querySelector('[data-theme-toggle]');
   if (themeBtn) {
-    const order = ['system', 'light', 'dark'];
-    const label = { system: 'Theme: automatic', light: 'Theme: light', dark: 'Theme: dark' };
-    const current = () => root.getAttribute('data-theme') || 'system';
-    themeBtn.setAttribute('aria-label', label[current()]);
-    themeBtn.addEventListener('click', () => {
-      const next = order[(order.indexOf(current()) + 1) % order.length];
-      if (next === 'system') root.removeAttribute('data-theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const effective = () => root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
+    const sync = () => {
+      const t = effective();
+      themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
+    };
+    const apply = () => {
+      const next = effective() === 'dark' ? 'light' : 'dark';
+      const followsSystem = next === (systemDark.matches ? 'dark' : 'light');
+      if (followsSystem) root.removeAttribute('data-theme');
       else root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-      themeBtn.setAttribute('aria-label', label[next]);
+      try {
+        if (followsSystem) localStorage.removeItem('theme'); else localStorage.setItem('theme', next);
+      } catch (e) {}
+      sync();
+    };
+    themeBtn.addEventListener('click', () => {
+      if (document.startViewTransition && !reduceMotion) document.startViewTransition(apply);
+      else apply();
     });
+    systemDark.addEventListener('change', sync);
+    sync();
   }
 
   /* ---------- Global nav ---------- */
@@ -97,7 +111,7 @@
     const next = c.querySelector('[data-next]');
     if (!track || !prev || !next) return;
     const step = () => {
-      const card = track.firstElementChild;
+      const card = track.querySelector('.news-card, .talk-card') || track.firstElementChild;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
       const per = card ? card.getBoundingClientRect().width + gap : 400;
       return Math.max(per, Math.floor(track.clientWidth / per) * per);
@@ -112,6 +126,62 @@
     window.addEventListener('resize', update);
     update();
   });
+
+  /* ---------- News: year pills drive and follow the carousel ---------- */
+  const newsCarousel = document.querySelector('[data-news-carousel]');
+  if (newsCarousel) {
+    const track = newsCarousel.querySelector('.carousel-track');
+    const pills = [...document.querySelectorAll('[data-jump-year]')];
+    const markers = [...track.querySelectorAll('[data-year-marker]')];
+    const pad = () => parseFloat(getComputedStyle(track).paddingLeft) || 0;
+    // Distance from the track's content edge to an element, in the current scroll position.
+    const offset = (el) => el.getBoundingClientRect().left - track.getBoundingClientRect().left - pad();
+    let lock = null;
+    let unlockTimer = 0;
+    const setActive = (year) => pills.forEach((p) => {
+      const on = p.dataset.jumpYear === year;
+      if (on && p.getAttribute('aria-pressed') !== 'true') p.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      p.setAttribute('aria-pressed', String(on));
+    });
+    pills.forEach((pill) => pill.addEventListener('click', () => {
+      const m = markers.find((el) => el.dataset.yearMarker === pill.dataset.jumpYear);
+      if (!m) return;
+      // Keep the clicked year highlighted while the carousel animates past other years.
+      lock = pill.dataset.jumpYear;
+      clearTimeout(unlockTimer);
+      unlockTimer = setTimeout(() => { lock = null; }, 1500);
+      const dist = offset(m);
+      if (reduceMotion) {
+        track.scrollBy({ left: dist });
+      } else if (Math.abs(dist) > track.clientWidth * 1.5) {
+        // Far away: fade out, jump, fade back in rather than smooth-scrolling past many cards.
+        track.classList.add('is-jumping');
+        setTimeout(() => {
+          track.style.scrollSnapType = 'none';
+          track.scrollBy({ left: offset(m) });
+          track.style.scrollSnapType = '';
+          track.classList.remove('is-jumping');
+        }, 180);
+      } else {
+        track.scrollBy({ left: dist, behavior: 'smooth' });
+      }
+      setActive(lock);
+    }));
+    track.addEventListener('scrollend', () => { clearTimeout(unlockTimer); unlockTimer = setTimeout(() => { lock = null; }, 100); });
+    // The active year is the one whose marker most recently passed the track's left edge.
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        if (lock) return;
+        const edge = track.clientWidth * 0.35;
+        let year = markers[0] && markers[0].dataset.yearMarker;
+        markers.forEach((m) => { if (offset(m) <= edge) year = m.dataset.yearMarker; });
+        setActive(year);
+      });
+    }, { passive: true });
+  }
 
   /* ---------- Modals ---------- */
   const openModal = (dlg) => {
@@ -142,7 +212,7 @@
       const show = archive.hidden;
       archive.hidden = !show;
       archiveToggle.setAttribute('aria-expanded', String(show));
-      archiveToggle.querySelector('span').textContent = show ? 'Hide all news' : archiveToggle.dataset.label;
+      archiveToggle.querySelector('span').textContent = show ? 'Hide list' : archiveToggle.dataset.label;
       if (show) archive.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
     });
     const tabs = archive.querySelectorAll('.year-tab');

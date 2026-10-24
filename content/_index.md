@@ -11,8 +11,6 @@ hero:
   subtitle: Doctoral Fellow at ETH AI Center · Student Researcher at Google DeepMind
   image: sequence.png
 
-# How many news items to show in the "Latest" carousel before "All news".
-news_latest: 8
 
 # Buttons in the "Let's connect" section.
 contact:

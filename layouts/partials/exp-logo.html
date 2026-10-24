@@ -1,6 +1,10 @@
+{{- /* Logo from assets/media/icons/<logo>.svg or .png, else the organisation's initials. */ -}}
+{{- $res := false -}}
+{{- with .logo }}{{ $res = or (resources.Get (printf "media/icons/%s.svg" .)) (resources.Get (printf "media/icons/%s.png" .)) }}{{ end -}}
 <div class="exp-logo" aria-hidden="true">
-  {{- with and .logo (resources.Get (printf "media/icons/%s.svg" .logo)) -}}
-    <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+  {{- with $res -}}
+    {{- $src := . }}{{ if eq .MediaType.SubType "png" }}{{ $src = .Resize "112x webp q90" }}{{ end -}}
+    <img src="{{ $src.RelPermalink }}" alt="" loading="lazy">
   {{- else -}}
     {{- $words := split (replaceRE `[^A-Za-z ]` "" .name) " " -}}
     {{- range first 2 $words }}{{ substr . 0 1 }}{{ end -}}

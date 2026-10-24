@@ -82,6 +82,7 @@ education:
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
   - area: BSc in Mechanical Engineering
     institution: Tongji University
+    institution_logo: tongji
     date_start: 2015-09-01
     date_end: 2020-06-30
     summary: |
