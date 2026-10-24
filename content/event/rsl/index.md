@@ -13,7 +13,7 @@ address:
   country: Switzerland
 
 summary: A method for inferring imitation signals from poor expert demonstrations.
-abstract: 'We review solutions to expert acquisition simplification in imitation learning and compare state-of-the-art methods for inferring reward functions from partial and potentially physically incompatible demonstrations for agile skill development.'
+abstract: 'We review solutions for simplifying expert acquisition in imitation learning and compare state-of-the-art methods for inferring reward functions from partial and potentially physically incompatible demonstrations for agile skill development.'
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.

@@ -1,6 +1,6 @@
 ---
 title: Unitree B2-W
-summary: Unitree B2-W combines perceptual and motor control to maintain balance and cope with a variety of different discrete terrains.
+summary: Unitree B2-W combines perceptual and motor control to maintain balance and cope with a variety of discrete terrains.
 
 # tags:
 #   - Deep Learning

@@ -1,6 +1,6 @@
 ---
 title: Solo
-summary: Solo is an open-source light-weight research quadruped robot that allows highly dynamic actuation.
+summary: Solo is an open-source lightweight research quadruped robot that allows highly dynamic actuation.
 # tags:
 #   - Deep Learning
 date: '2022-03-01T00:00:00Z'

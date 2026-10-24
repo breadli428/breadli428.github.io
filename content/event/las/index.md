@@ -1,5 +1,5 @@
 ---
-title: 'Learning from Limited Demonstrations: Lessons We have Learned'
+title: 'Learning from Limited Demonstrations: Lessons We Have Learned'
 
 event: Research Presentation
 event_url: https://las.inf.ethz.ch/

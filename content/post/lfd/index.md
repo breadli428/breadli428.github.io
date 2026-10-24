@@ -1,6 +1,6 @@
 ---
 title: 'Feature-Based vs. GAN-Based Imitation: When and Why'
-summary: Comparing feature-based and GAN-based methods for learning from demonstrations, the key to success lies less in the method itself and more in the structure and suitability of the motion representation for the task.
+summary: Comparing feature-based and GAN-based methods for learning from demonstrations shows that the key to success lies less in the method itself and more in the structure and suitability of the motion representation for the task.
 date: 2025-07-08
 
 # Featured image
@@ -48,10 +48,10 @@ As a result, conclusions drawn from empirical success may conflate algorithmic m
 The objective of this article is to **provide a principled comparison between feature-based and GAN-based imitation methods**, focusing on their fundamental assumptions, inductive biases, and operational regimes.
 The exposition proceeds in two stages.
 First, we review the problem setting from the perspective of physics-based control and reinforcement learning, including the formulation of reward functions based on reference trajectories.
-Second, we examine the historical development and current landscape of imitation methods, organized around the type of reward structure they use, explicit, feature-based formulations versus implicit, adversarially learned metrics.
+Second, we examine the historical development and current landscape of imitation methods, organized around the type of reward structure they use: explicit, feature-based formulations versus implicit, adversarially learned metrics.
 
 Our goal is not to advocate for one approach over the other in general, but to clarify the conditions under which each is more suitable.
-By articulating the trade-offs involved—including scalability, stability, generalization, and representation learning, we aim to provide a conceptual framework that supports more informed method selection in future work.
+By articulating the trade-offs involved—including scalability, stability, generalization, and representation learning—we aim to provide a conceptual framework that supports more informed method selection in future work.
 
 ## Physics-Based Control, States and Actions
 
@@ -66,7 +66,7 @@ The transition kernel $T: \mathcal{S} \times \mathcal{A} \to \mathcal{S}$ captur
 The agent seeks to learn a policy $\pi_\theta: \mathcal{S} \to \mathcal{A}$ that maximizes the expected discounted return $\mathbb{E}_{\pi_\theta} \left[\sum_{t \geq 0} \gamma^t r_t\right]$, where $r_t$ is the reward at time $t$ and $\gamma \in \left [0, 1 \right ]$ is the discount factor.
 {{% /callout %}}
 
-In this context, the state $s \in \mathcal{S}$ typically encodes the agent's physical configuration and dynamics, such as joint positions, joint velocities, root orientation, and may include exteroceptive inputs like terrain geometry or object pose.
+In this context, the state $s \in \mathcal{S}$ typically encodes the agent's physical configuration and dynamics, such as joint positions, joint velocities, and root orientation, and may include exteroceptive inputs like terrain geometry or object pose.
 The action $a \in \mathcal{A}$ corresponds to the control input applied to the system, most commonly joint torques in torque-controlled settings, or target positions in PD-controlled systems.
 In biomechanical models, actions may also represent muscle activations.
 By integrating these elements within a physics simulator or physical system, physics-based control enables emergent behaviors that are compatible with real-world dynamics, allowing policies to discover strategies that are not only effective but also physically feasible.
@@ -114,7 +114,7 @@ Transitions between motions are implemented via hard switching on motion identif
 {{% /callout %}}
 
 What is missing in this setup is a **structured representation space** over motions—one that captures both temporal progression and the underlying topology of behavioral variation.
-Such representations enable not only smoother transitions between behaviors but also facilitate interpolation, compositionality, and improved generalization to motions not seen during training.
+Such representations not only enable smoother transitions between behaviors but also facilitate interpolation, compositionality, and improved generalization to motions not seen during training.
 Policies trained over these structured motion spaces are better equipped to synthesize new behaviors while preserving physical plausibility and stylistic fidelity.
 
 
@@ -147,7 +147,7 @@ In this regime, the discriminator easily classifies all transitions correctly, p
 This phenomenon is particularly problematic in high-dimensional or difficult environments, such as rough terrain locomotion or manipulation tasks, where meaningful exploration is essential but sparse.
 {{% /callout %}}
 
-Solutions such as Wasserstein-based objectives (e.g., [WASABI](https://proceedings.mlr.press/v205/li23b/li23b.pdf), [HumanMimic](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10610449)) aim to retain useful gradients and therefore reward signals even in the face of a strong discriminator.
+Solutions such as Wasserstein-based objectives (e.g., [WASABI](https://proceedings.mlr.press/v205/li23b/li23b.pdf), [HumanMimic](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10610449)) aim to retain useful gradients, and therefore reward signals, even in the face of a strong discriminator.
 
 {{% callout warning %}}
 **Mode Collapse**
@@ -380,7 +380,7 @@ Moreover, effective latent representations often require pretraining and careful
 
 ## Final Remarks
 
-This survey has examined two major paradigms in learning from demonstrations: feature-based and GAN-based methods, through the lens of reward structure, scalability, generalization, and representation.
+This survey has examined two major paradigms in learning from demonstrations—feature-based and GAN-based methods—through the lens of reward structure, scalability, generalization, and representation.
 The core distinction lies not merely in architectural components but in their respective philosophies of supervision: explicit, hand-crafted rewards versus implicit, adversarially learned objectives.
 
 **Feature-based methods** offer dense, interpretable rewards that strongly anchor the policy to reference trajectories, making them well-suited for tasks requiring high-fidelity reproduction of demonstrated motions.

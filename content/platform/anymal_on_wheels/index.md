@@ -1,6 +1,6 @@
 ---
 title: ANYmal on Wheels
-summary: ANYmal on Wheels is equipped with non-​steerable, torque-​controlled wheels to overcome the trade-​off between mobility and efficiency.
+summary: ANYmal on Wheels is equipped with non-steerable, torque-controlled wheels to overcome the trade-off between mobility and efficiency.
 # tags:
 #   - Deep Learning
 date: '2025-01-01T00:00:00Z'

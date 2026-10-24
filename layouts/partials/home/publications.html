@@ -1,11 +1,13 @@
 {{- $pubs := (where site.RegularPages "Section" "publication").ByDate.Reverse -}}
-{{- $featured := where $pubs "Params.featured" true -}}
+{{- /* Featured research: featured papers where the site owner ("admin") is first author. */ -}}
+{{- $featured := slice -}}
+{{- range where $pubs "Params.featured" true }}{{ if eq (index .Params.authors 0) "admin" }}{{ $featured = $featured | append . }}{{ end }}{{ end -}}
 {{- $show := 7 -}}
 <section class="section" id="publications">
   <div class="wrap-wide">
     <div class="section-head" data-reveal>
       <h2 class="headline-section">Featured research.</h2>
-      <p class="lead">Learning agile, natural and general robot behavior, from world models to imitation.</p>
+      <p class="lead">First-author work on learning agile, natural and general robot behavior, from world models to imitation.</p>
     </div>
     <div class="tile-grid" id="featured-grid">
       {{ range $i, $p := $featured }}

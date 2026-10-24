@@ -18,24 +18,25 @@
     </aside>
     <div class="about-bio">
       <h2 class="headline-section" data-reveal>Hello, I’m <span class="gradient-text">{{ $a.Params.first_name }}</span>.</h2>
-      <div class="prose" data-reveal style="--i:1">{{ $a.Content }}</div>
-      <div class="btn-row" data-reveal style="--i:2">
+      {{- /* The bio is split at its "###" headings: the text before the first heading is the lead,
+             each headed part becomes a card. */ -}}
+      {{ $parts := split (string $a.Content) "<h3" }}
+      <div class="bio-lead prose" data-reveal style="--i:1">{{ index $parts 0 | safeHTML }}</div>
+      {{ with after 1 $parts }}
+      <div class="bio-cards">
+        {{ range $i, $part := . }}
+        <div class="bio-card prose" data-reveal style="--i:{{ $i }}">{{ printf "<h3%s" $part | safeHTML }}</div>
+        {{ end }}
+      </div>
+      {{ end }}
+      {{ with $a.Params.interests }}
+      <ul class="interest-list" data-reveal aria-label="Interests">
+        {{ range . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+      {{ end }}
+      <div class="btn-row" data-reveal>
         <a class="btn btn-primary" href="{{ "uploads/resume.pdf" | relURL }}" target="_blank" rel="noopener">Download CV</a>
         <a class="more" href="#contact">Get in touch</a>
-      </div>
-      <div class="facts">
-        <div class="fact" data-reveal>
-          <h3>Interests</h3>
-          <ul>{{ range $a.Params.interests }}<li>{{ . }}</li>{{ end }}</ul>
-        </div>
-        <div class="fact" data-reveal style="--i:1">
-          <h3>Education</h3>
-          <ul>
-            {{ range $a.Params.education }}
-            <li>{{ .area }}<small>{{ .institution }} · {{ (time .date_start).Format "2006" }}–{{ with .date_end }}{{ (time .).Format "2006" }}{{ else }}Present{{ end }}</small></li>
-            {{ end }}
-          </ul>
-        </div>
       </div>
     </div>
   </div>

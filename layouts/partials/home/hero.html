@@ -1,6 +1,11 @@
 {{- $h := .page.Params.hero -}}
 <section class="hero" aria-label="Introduction">
-  <div class="wrap">
+  {{ with resources.Get (printf "media/%s" $h.image) }}
+  <div class="hero-media" aria-hidden="true">
+    {{ partial "img.html" (dict "res" . "widths" (slice 800 1280 1920) "sizes" "100vw" "alt" "" "eager" true) }}
+  </div>
+  {{ end }}
+  <div class="hero-content wrap">
     {{ with $h.eyebrow }}<p class="hero-eyebrow">{{ . }}</p>{{ end }}
     <h1 class="headline-hero">{{ $h.title | safeHTML }}</h1>
     {{ with $h.subtitle }}<p class="hero-sub">{{ . }}</p>{{ end }}
@@ -9,9 +14,5 @@
       <a class="btn btn-ghost on-dark" href="{{ "uploads/resume.pdf" | relURL }}" target="_blank" rel="noopener">Download CV</a>
     </div>
   </div>
-  {{ with resources.Get (printf "media/%s" $h.image) }}
-  <div class="hero-media">
-    {{ partial "img.html" (dict "res" . "widths" (slice 800 1280 1920) "sizes" "(max-width: 1440px) 100vw, 1440px" "alt" "Legged robots in motion" "eager" true) }}
-  </div>
-  {{ end }}
+  <a class="hero-scroll" href="#about" aria-label="Scroll to biography">{{ partial "svg/chevron-down.html" }}</a>
 </section>

@@ -12,7 +12,7 @@ address:
   postcode: '02139'
   country: United States
 
-summary: Works that propose possible solutions to reduce such human involvement, specifically with examples of legged skill development using model-free reinforcement learning and imitation learning methods.
+summary: Works that propose possible solutions to reduce human involvement, specifically with examples of legged skill development using model-free reinforcement learning and imitation learning methods.
 abstract: 'In the first work, we propose a multi-stage training structure that decouples the training of specific tasks into repurposable low-level skill primitive development and task-specific high-level policy learning. In the second work, we introduce a novel adversarial imitation learning method that allows skill learning from rough, partial, hand-held demonstrations. In the last work, we combine the first two ideas and develop versatile, skill-conditioned policies from unlabeled, mixed motion references by integrating unsupervised skill discovery techniques into adversarial imitation learning settings.'
 
 # Talk start and end times.
