@@ -183,6 +183,34 @@
     }, { passive: true });
   }
 
+  /* ---------- All publications: filters and "show all" ---------- */
+  const pubs = document.getElementById('all-publications');
+  if (pubs) {
+    const items = [...pubs.querySelectorAll('.pub-item')];
+    const groups = [...pubs.querySelectorAll('[data-pub-group]')];
+    const more = pubs.querySelector('[data-pub-more]');
+    let expanded = false;
+    let filter = 'all';
+    const render = () => {
+      items.forEach((li) => {
+        const match = filter === 'all' ? true
+          : filter === 'first' ? li.dataset.first === 'true'
+          : li.dataset.cat === filter;
+        // The cut-off only applies to the unfiltered list.
+        li.hidden = !match || (filter === 'all' && !expanded && li.hasAttribute('data-extra'));
+      });
+      groups.forEach((g) => { g.hidden = !g.querySelector('.pub-item:not([hidden])'); });
+      if (more) more.hidden = filter !== 'all' || expanded;
+    };
+    pubs.querySelectorAll('[data-pub-filter]').forEach((btn) => btn.addEventListener('click', () => {
+      filter = btn.dataset.pubFilter;
+      pubs.querySelectorAll('[data-pub-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      render();
+    }));
+    if (more) more.querySelector('button').addEventListener('click', () => { expanded = true; render(); });
+    render();
+  }
+
   /* ---------- Modals ---------- */
   const openModal = (dlg) => {
     if (!dlg) return;

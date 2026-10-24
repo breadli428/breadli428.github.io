@@ -1,0 +1,6 @@
+{{- /* Filter category for a publication: "preprint" when its venue is arXiv, else journal or conference by type. */ -}}
+{{- $short := .Params.publication_short | default .Params.publication | default "" -}}
+{{- if findRE `(?i)arxiv` $short 1 -}}preprint
+{{- else if eq (index .Params.publication_types 0) "article-journal" -}}journal
+{{- else -}}conference
+{{- end -}}

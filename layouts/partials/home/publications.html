@@ -33,25 +33,52 @@
     {{ end }}
   </div>
 
-  <div class="wrap" style="margin-top: clamp(80px, 10vw, 128px)">
+  {{- /* All publications: compact rows grouped by year, with category filters and a "show all" cut-off. */ -}}
+  {{- $limit := 10 -}}
+  {{- $counts := dict "all" (len $pubs) "first" 0 "conference" 0 "journal" 0 "preprint" 0 -}}
+  {{- range $pubs -}}
+    {{- $c := partial "pub-category.html" . | string | strings.TrimSpace -}}
+    {{- $counts = merge $counts (dict $c (add (index $counts $c) 1)) -}}
+    {{- if eq (index .Params.authors 0) "admin" }}{{ $counts = merge $counts (dict "first" (add (index $counts "first") 1)) }}{{ end -}}
+  {{- end -}}
+  <div class="wrap pubs" id="all-publications" style="margin-top: clamp(80px, 10vw, 128px)">
     <div class="section-head section-head-row" data-reveal>
       <h2 class="headline-section" style="font-size: clamp(32px, 4vw, 48px)">All publications.</h2>
       <a class="more" href="https://scholar.google.com/citations?hl=en&user=kw1-DxQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
     </div>
-    {{ range $pubs.GroupByDate "2006" }}
-    <h3 class="pub-year" data-reveal>{{ .Key }}</h3>
-    <ul class="pub-list">
-      {{ range .Pages }}
-      <li class="pub-item" data-reveal>
-        <div>
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p class="authors">{{ partial "authors.html" . }}</p>
-          <p class="venue">{{ .Params.publication | default .Params.publication_short | markdownify }}{{ if and .Params.publication (findRE `<strong` .Params.publication_short) }}{{ partial "venue-badge.html" . }}{{ end }}</p>
-        </div>
-        {{ partial "pub-links.html" (dict "page" .) }}
-      </li>
+    <div class="pub-filters" role="group" aria-label="Filter publications" data-reveal>
+      {{ range slice (slice "all" "All") (slice "first" "First author") (slice "conference" "Conference") (slice "journal" "Journal") (slice "preprint" "Preprint") }}
+      {{ $n := index $counts (index . 0) }}
+      {{ if gt $n 0 }}
+      <button class="pub-filter" type="button" data-pub-filter="{{ index . 0 }}" aria-pressed="{{ cond (eq (index . 0) "all") "true" "false" }}">{{ index . 1 }} <span>{{ $n }}</span></button>
       {{ end }}
-    </ul>
+      {{ end }}
+    </div>
+    {{ $i := 0 }}
+    {{ range $pubs.GroupByDate "2006" }}
+    <div class="pub-group" data-pub-group>
+      <h3 class="pub-year">{{ .Key }}</h3>
+      <ul class="pub-list">
+        {{ range .Pages }}
+        {{ $c := partial "pub-category.html" . | string | strings.TrimSpace }}
+        <li class="pub-item" data-cat="{{ $c }}" data-first="{{ eq (index .Params.authors 0) "admin" }}"{{ if ge $i $limit }} data-extra hidden{{ end }}>
+          <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+          <p class="authors">{{ partial "authors.html" . }}</p>
+          <div class="pub-meta">
+            {{ $v := replaceRE `^\s*In\s+` "" (.Params.publication_short | default "") }}
+            {{ $parts := split $v `<span class="middot-divider"></span>` }}
+            <span class="pub-venue" title="{{ .Params.publication | default "" | markdownify | plainify }}">{{ index $parts 0 | markdownify }}</span>
+            {{ range after 1 $parts }}<span class="pub-award">{{ . | plainify }}</span>{{ end }}
+            {{ partial "pub-links.html" (dict "page" . "class" "pub-links" "chip" "pub-link") }}
+          </div>
+        </li>
+        {{ $i = add $i 1 }}
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+    {{ if gt (len $pubs) $limit }}
+    <div class="show-more" data-pub-more><button class="btn btn-secondary" type="button">Show all {{ len $pubs }} publications</button></div>
     {{ end }}
   </div>
 </section>
