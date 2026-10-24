@@ -47,9 +47,9 @@ links:
   url: 'https://sites.google.com/view/uncertainty-aware-rwm/home'
 
 url_pdf: 'https://arxiv.org/abs/2504.16680'
-url_code: ''
+url_code: 'https://github.com/leggedrobotics/robotic_world_model_lite'
 url_dataset: ''
-url_poster: ''
+url_poster: 'https://drive.google.com/file/d/1sai89HmtfGSrvNiV0Kq564soB7ScONZd/view'
 url_project: ''
 url_slides: ''
 url_source: ''

@@ -52,8 +52,8 @@ profiles:
 
 interests:
   - Reinforcement Learning
-  - Developmental Robotics
-  - Legged Intelligence
+  - World Models
+  - Vision-Language-Action Models
 
 education:
   - area: PhD in Artificial Intelligence
