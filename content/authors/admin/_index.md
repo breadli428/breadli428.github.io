@@ -216,8 +216,8 @@ I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.et
 
 ### Research
 
-My research interests focus on algorithms that can enable autonomous agents to acquire complex behaviors through learning, especially general-purpose methods that could enable any autonomous system to learn to solve any task. On legged robots particularly, I am thrilled to apply these techniques to achieve animal-level agility and naturalness.
+My research interests focus on algorithms that can enable autonomous agents to acquire complex behaviors through learning, especially general-purpose methods that could enable any autonomous system to learn to solve any task. This spans online learning and world modeling.
 
 ### Previously
 
-During my studies, I worked on structured motion representation and active learning methods at the [Biomimetic Robotics Lab](https://biomimetics.mit.edu/) at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU). Prior to that, I was engaged in agile motion imitation from limited demonstrations and intrinsic skill exploration with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius) at the [Autonomous Learning Group](https://al.is.mpg.de/) at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/), Germany.
+I worked on motion representation and active learning methods at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU), and on motion imitation from limited demonstrations and intrinsic skill exploration at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/) with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius).
