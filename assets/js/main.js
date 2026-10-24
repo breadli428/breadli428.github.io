@@ -47,14 +47,17 @@
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   }
 
+  const heroMedia = document.querySelector('.hero-media');
   let ticking = false;
   const onScroll = () => {
     const y = window.scrollY;
     nav.classList.toggle('is-scrolled', y > 4);
-    if (hero) {
-      nav.classList.toggle('is-over-hero', y < hero.offsetHeight * 0.55);
-      // Hero progress 0 → 1 while it scrolls out; drives the text fade and image zoom in CSS.
-      if (!reduceMotion) hero.style.setProperty('--p', Math.min(1, Math.max(0, y / hero.offsetHeight)).toFixed(3));
+    if (hero) nav.classList.toggle('is-over-hero', y < hero.offsetHeight * 0.25);
+    if (heroMedia && !reduceMotion) {
+      const r = heroMedia.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
+      heroMedia.style.setProperty('--p', p.toFixed(3));
     }
     ticking = false;
   };
