@@ -50,7 +50,7 @@ featured: true
 # Custom links (uncomment lines below)
 links:
 - name: Project
-  url: ''
+  url: 'https://nil.is.tue.mpg.de'
 
 url_pdf: 'https://arxiv.org/abs/2503.10626'
 url_code: ''
