@@ -102,7 +102,7 @@ work:
     date_start: 2026-04-10
     date_end: ''
     summary: |
-      Vision-Language-Action models with [Oliver Groth](https://ogroth.github.io/).
+      [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) with [Nicolas Heess](https://scholar.google.com/citations?user=79k7bGEAAAAJ&hl=en).
   - position: Doctoral Fellow
     company_name: ETH AI Center
     company_url: 'https://ai.ethz.ch/'
