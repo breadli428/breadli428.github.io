@@ -104,6 +104,14 @@ teaching:
     year_end: ''
     summary: |
       Teaching Assistant with [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea).
+  - course: Introduction to Machine Learning
+    institution: ETH Zurich
+    institution_url: 'https://ethz.ch/en.html'
+    institution_logo: eth
+    year_start: 2023
+    year_end: ''
+    summary: |
+      Teaching Assistant with [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea).
   - course: Linear & Combinatorial Optimization
     institution: ETH Zurich
     institution_url: 'https://ethz.ch/en.html'
@@ -111,7 +119,7 @@ teaching:
     year_start: 2021
     year_end: 2021
     summary: |
-      Teaching Assistant.
+      Teaching Assistant with [Prof. Rico Zenklusen](https://math.ethz.ch/ifor/groups/zenklusen_group/rico-zenklusen.html).
 # Student project supervision shown in the Teaching section.
 supervision:
   - type: Master's Theses
@@ -122,7 +130,7 @@ supervision:
     year_start: 2023
     year_end: ''
     summary: |
-      Supervised 24 master thesis projects in robot learning.
+      Supervised 24 master thesis projects in robot learning across the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
   - type: Semester Projects
     count: 5
     institution: ETH Zurich
@@ -131,7 +139,7 @@ supervision:
     year_start: 2023
     year_end: ''
     summary: |
-      Supervised 5 semester projects in robot learning.
+      Supervised 5 semester projects in robot learning across the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
 work:
   - position: Student Researcher
     company_name: Google DeepMind
