@@ -94,6 +94,44 @@ education:
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
     #   - lorem ipsum dolor sit amet, consectetur adipiscing elit
+# Teaching assistantships shown in the Teaching section.
+teaching:
+  - course: Probabilistic Artificial Intelligence
+    institution: ETH Zurich
+    institution_url: 'https://ethz.ch/en.html'
+    institution_logo: eth
+    year_start: 2023
+    year_end: ''
+    summary: |
+      Teaching Assistant with [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea).
+  - course: Linear & Combinatorial Optimization
+    institution: ETH Zurich
+    institution_url: 'https://ethz.ch/en.html'
+    institution_logo: eth
+    year_start: 2021
+    year_end: 2021
+    summary: |
+      Teaching Assistant.
+# Student project supervision shown in the Teaching section.
+supervision:
+  - type: Master's Theses
+    count: 24
+    institution: ETH Zurich
+    institution_url: 'https://ethz.ch/en.html'
+    institution_logo: eth
+    year_start: 2023
+    year_end: ''
+    summary: |
+      Supervised 24 master thesis projects in robot learning.
+  - type: Semester Projects
+    count: 5
+    institution: ETH Zurich
+    institution_url: 'https://ethz.ch/en.html'
+    institution_logo: eth
+    year_start: 2023
+    year_end: ''
+    summary: |
+      Supervised 5 semester projects in robot learning.
 work:
   - position: Student Researcher
     company_name: Google DeepMind

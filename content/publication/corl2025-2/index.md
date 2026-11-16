@@ -43,6 +43,7 @@ summary: We propose a memory-enhanced augmentation method for reinforcement lear
 #   - Large Language Models
 
 # Display this page in the Featured widget?
+student_work: true
 featured: true
 
 # Custom links (uncomment lines below)

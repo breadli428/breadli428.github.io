@@ -195,6 +195,7 @@
       items.forEach((li) => {
         const match = filter === 'all' ? true
           : filter === 'first' ? li.dataset.first === 'true'
+          : filter === 'student' ? li.dataset.student === 'true'
           : li.dataset.cat === filter;
         // The cut-off only applies to the unfiltered list.
         li.hidden = !match || (filter === 'all' && !expanded && li.hasAttribute('data-extra'));

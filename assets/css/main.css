@@ -886,6 +886,19 @@ main { display: block; }
 
 @media (max-width: 820px) { .exp-cols { grid-template-columns: 1fr; } }
 
+/* Teaching: venues where supervised students published */
+.venue-stats {
+  list-style: none; padding: 0; margin: 0 0 clamp(36px, 5vw, 56px);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px;
+}
+.venue-stat {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 22px 24px; border-radius: var(--radius-m);
+  background: var(--bg-tile-on-alt);
+}
+.venue-stat .n { font-size: clamp(36px, 4vw, 48px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.venue-stat .v { font-size: 15px; font-weight: 600; color: var(--text-2); }
+
 /* ==========================================================================
    Talks
    ========================================================================== */

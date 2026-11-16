@@ -41,6 +41,7 @@ summary: We propose a BNN-based dynamics learning method using physical priors f
 #   - Large Language Models
 
 # Display this page in the Featured widget?
+student_work: true
 featured: true
 
 # Custom links (uncomment lines below)

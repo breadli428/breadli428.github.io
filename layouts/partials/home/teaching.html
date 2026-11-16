@@ -1,0 +1,56 @@
+{{- $a := .author -}}
+{{- /* Published venues of student works (preprints excluded), counted by short venue name, most papers first. */ -}}
+{{- $venues := dict -}}
+{{- range where site.RegularPages "Section" "publication" -}}
+  {{- if and .Params.student_work (ne (partial "pub-category.html" . | string | strings.TrimSpace) "preprint") -}}
+    {{- $v := index (split (replaceRE `^\s*In\s+` "" (.Params.publication_short | default "")) `<span class="middot-divider"></span>`) 0 | markdownify | plainify | strings.TrimSpace -}}
+    {{- with $v }}{{ $venues = merge $venues (dict . (add (index $venues . | default 0) 1)) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $rows := slice -}}
+{{- range $k, $n := $venues }}{{ $rows = $rows | append (dict "name" $k "n" $n) }}{{ end -}}
+<section class="section alt" id="teaching">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Teaching.</h2>
+      <p class="lead">I have had the great fortune to work with and advise outstanding master’s students through their theses, semester projects, and coursework. Thanks to their excellent work and dedication, they have published at:</p>
+    </div>
+    {{ with $rows }}
+    <ul class="venue-stats" data-reveal>
+      {{ range sort (sort . "name") "n" "desc" }}
+      <li class="venue-stat"><span class="n">{{ .n }}</span><span class="v">{{ .name }}</span></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+    <div class="exp-cols">
+      <div class="exp-col">
+        <h3 data-reveal>Teaching Assistant</h3>
+        {{ range $i, $t := $a.Params.teaching }}
+        <article class="exp-card" data-reveal style="--i:{{ $i }}">
+          {{ partial "exp-logo.html" (dict "logo" $t.institution_logo "name" $t.institution) }}
+          <div>
+            <span class="when">{{ $t.year_start }}{{ if ne (string $t.year_end) (string $t.year_start) }} – {{ with $t.year_end }}{{ . }}{{ else }}<span class="now">Present</span>{{ end }}{{ end }}</span>
+            <h4>{{ $t.course }}</h4>
+            <p class="org"><a href="{{ $t.institution_url }}" target="_blank" rel="noopener">{{ $t.institution }}</a></p>
+            <div class="desc">{{ $t.summary | markdownify }}</div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      <div class="exp-col">
+        <h3 data-reveal>Project Supervision</h3>
+        {{ range $i, $s := $a.Params.supervision }}
+        <article class="exp-card" data-reveal style="--i:{{ $i }}">
+          {{ partial "exp-logo.html" (dict "logo" $s.institution_logo "name" $s.institution) }}
+          <div>
+            <span class="when">{{ $s.year_start }} – {{ with $s.year_end }}{{ . }}{{ else }}<span class="now">Present</span>{{ end }}</span>
+            <h4>{{ $s.count }} {{ $s.type }}</h4>
+            <p class="org"><a href="{{ $s.institution_url }}" target="_blank" rel="noopener">{{ $s.institution }}</a></p>
+            <div class="desc">{{ $s.summary | markdownify }}</div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

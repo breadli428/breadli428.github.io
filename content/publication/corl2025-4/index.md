@@ -42,6 +42,7 @@ summary: We propose a constrained style learning approach that balances task per
 #   - Large Language Models
 
 # Display this page in the Featured widget?
+student_work: true
 featured: true
 
 # Custom links (uncomment lines below)

@@ -35,11 +35,12 @@
 
   {{- /* All publications: compact rows grouped by year, with category filters and a "show all" cut-off. */ -}}
   {{- $limit := 10 -}}
-  {{- $counts := dict "all" (len $pubs) "first" 0 "conference" 0 "journal" 0 "preprint" 0 -}}
+  {{- $counts := dict "all" (len $pubs) "first" 0 "student" 0 "conference" 0 "journal" 0 "preprint" 0 -}}
   {{- range $pubs -}}
     {{- $c := partial "pub-category.html" . | string | strings.TrimSpace -}}
     {{- $counts = merge $counts (dict $c (add (index $counts $c) 1)) -}}
     {{- if eq (index .Params.authors 0) "admin" }}{{ $counts = merge $counts (dict "first" (add (index $counts "first") 1)) }}{{ end -}}
+    {{- if .Params.student_work }}{{ $counts = merge $counts (dict "student" (add (index $counts "student") 1)) }}{{ end -}}
   {{- end -}}
   <div class="wrap pubs" id="all-publications" style="margin-top: clamp(80px, 10vw, 128px)">
     <div class="section-head section-head-row" data-reveal>
@@ -47,7 +48,7 @@
       <a class="more" href="https://scholar.google.com/citations?hl=en&user=kw1-DxQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
     </div>
     <div class="pub-filters" role="group" aria-label="Filter publications" data-reveal>
-      {{ range slice (slice "all" "All") (slice "first" "First author") (slice "conference" "Conference") (slice "journal" "Journal") (slice "preprint" "Preprint") }}
+      {{ range slice (slice "all" "All") (slice "first" "First author") (slice "student" "Student works") (slice "conference" "Conference") (slice "journal" "Journal") (slice "preprint" "Preprint") }}
       {{ $n := index $counts (index . 0) }}
       {{ if gt $n 0 }}
       <button class="pub-filter" type="button" data-pub-filter="{{ index . 0 }}" aria-pressed="{{ cond (eq (index . 0) "all") "true" "false" }}">{{ index . 1 }} <span>{{ $n }}</span></button>
@@ -61,7 +62,7 @@
       <ul class="pub-list">
         {{ range .Pages }}
         {{ $c := partial "pub-category.html" . | string | strings.TrimSpace }}
-        <li class="pub-item" data-cat="{{ $c }}" data-first="{{ eq (index .Params.authors 0) "admin" }}"{{ if ge $i $limit }} data-extra hidden{{ end }}>
+        <li class="pub-item" data-cat="{{ $c }}" data-first="{{ eq (index .Params.authors 0) "admin" }}" data-student="{{ .Params.student_work | default false }}"{{ if ge $i $limit }} data-extra hidden{{ end }}>
           <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
           <p class="authors">{{ partial "authors.html" . }}</p>
           <div class="pub-meta">

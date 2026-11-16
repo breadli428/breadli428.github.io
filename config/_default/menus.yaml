@@ -22,6 +22,9 @@ main:
   - name: Talks
     url: /#talks
     weight: 50
+  - name: Teaching
+    url: /#teaching
+    weight: 55
   - name: Platforms
     url: /#platforms
     weight: 60
