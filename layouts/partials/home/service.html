@@ -1,0 +1,39 @@
+{{- $a := .author -}}
+<section class="section" id="service">
+  <div class="wrap-wide">
+    <div class="section-head" data-reveal>
+      <h2 class="headline-section">Service.</h2>
+      <p class="lead">Giving back to the research community through organizing workshops and reviewing.</p>
+    </div>
+    <div class="exp-cols">
+      <div class="exp-col">
+        <h3 data-reveal>Workshop Organization</h3>
+        {{ range $i, $w := $a.Params.workshops }}
+        <article class="exp-card no-logo" data-reveal style="--i:{{ $i }}">
+          <div>
+            <span class="when">{{ $w.venue }}</span>
+            <h4><a href="{{ $w.url }}" target="_blank" rel="noopener">{{ $w.title }}</a></h4>
+            <p class="org">{{ $w.venue_full }}</p>
+            <div class="desc">{{ $w.location }}</div>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      <div class="exp-col">
+        <h3 data-reveal>Reviewer</h3>
+        <article class="exp-card no-logo" data-reveal>
+          <div>
+            {{ range $a.Params.reviewing }}
+            <div class="review-group">
+              <h5>{{ .group }}</h5>
+              <ul class="review-chips">
+                {{ range .venues }}<li class="chip">{{ . }}</li>{{ end }}
+              </ul>
+            </div>
+            {{ end }}
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

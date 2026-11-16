@@ -897,6 +897,14 @@ main { display: block; }
   background: var(--bg-tile-on-alt);
 }
 .venue-stat .n { font-size: clamp(36px, 4vw, 48px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.section:not(.alt) .exp-card { background: var(--bg-tile); }
+.exp-card.no-logo { grid-template-columns: 1fr; }
+.exp-card h4 a { color: var(--text); }
+.review-group + .review-group { margin-top: 16px; }
+.review-group h5 { font-size: 13px; font-weight: 600; color: var(--text-2); margin: 0 0 10px; }
+.review-chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.section:not(.alt) .review-chips .chip { background: var(--bg); }
+.review-chips .chip:hover { background: var(--bg); color: var(--text); }
 .venue-stat .v { font-size: 15px; font-weight: 600; color: var(--text-2); }
 
 /* ==========================================================================

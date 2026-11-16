@@ -132,14 +132,31 @@ supervision:
     summary: |
       Supervised 24 master thesis projects at the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
   - type: Semester Projects
-    count: 5
+    count: 8
     institution: ETH Zurich
     institution_url: 'https://ethz.ch/en.html'
     institution_logo: eth
     year_start: 2023
     year_end: ''
     summary: |
-      Supervised 5 semester projects at the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
+      Supervised 8 semester projects at the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
+# Community service shown in the Service section.
+workshops:
+  - title: Model-Based RL in the Era of Generative World Models
+    url: 'https://worldmodels-rlc.github.io/'
+    venue: RLC 2026
+    venue_full: Reinforcement Learning Conference
+    location: Montreal, Canada
+  - title: Sim-to-Real Transfer for Humanoid Robots
+    url: 'https://sites.google.com/view/sim-to-real-humanoids/home'
+    venue: Humanoids 2025
+    venue_full: IEEE-RAS International Conference on Humanoid Robots
+    location: Seoul, South Korea
+reviewing:
+  - group: Conferences
+    venues: [NeurIPS, ICLR, ICML, CoRL, ICCV, RLC, RSS, IROS, ICRA]
+  - group: Journals
+    venues: [RA-L, T-RO, T-RL]
 work:
   - position: Student Researcher
     company_name: Google DeepMind

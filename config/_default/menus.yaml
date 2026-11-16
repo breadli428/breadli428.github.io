@@ -25,6 +25,9 @@ main:
   - name: Teaching
     url: /#teaching
     weight: 55
+  - name: Service
+    url: /#service
+    weight: 57
   - name: Platforms
     url: /#platforms
     weight: 60
