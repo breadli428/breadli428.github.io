@@ -100,9 +100,9 @@ work:
     company_url: 'https://deepmind.google/'
     company_logo: deepmind
     date_start: 2026-04-10
-    date_end: ''
+    date_end: 2026-09-30
     summary: |
-      [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) with [Nicolas Heess](https://scholar.google.com/citations?user=79k7bGEAAAAJ&hl=en).
+      Agentic learning with [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) with [Nicolas Heess](https://scholar.google.com/citations?user=79k7bGEAAAAJ&hl=en).
   - position: Doctoral Fellow
     company_name: ETH AI Center
     company_url: 'https://ai.ethz.ch/'
@@ -212,7 +212,7 @@ work:
 
 ## About Me
 
-I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea) at [ETH AI Center](https://ai.ethz.ch/), Switzerland. Since April 2026, I have been a Student Researcher in the [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) team at [Google DeepMind](https://deepmind.google/).
+I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.ethz.ch/people/person-detail.hutter.html) and [Prof. Andreas Krause](https://las.inf.ethz.ch/krausea) at [ETH AI Center](https://ai.ethz.ch/), Switzerland. From April to September 2026, I was a Student Researcher in the [Gemini Robotics](https://deepmind.google/models/gemini-robotics/) team at [Google DeepMind](https://deepmind.google/).
 
 ### Research
 

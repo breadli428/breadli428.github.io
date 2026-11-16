@@ -1,6 +1,21 @@
 # News items shown on the homepage (newest first).
 # `highlight: true` marks milestones (papers, awards, new roles).
 # `body` is HTML.
+- date: '2026-09-30'
+  title: I concluded my internship as a Student Researcher at Google DeepMind.
+  highlight: true
+  body: >-
+    My time as a Student Researcher in the <a href="https://deepmind.google/models/gemini-robotics/" target="_blank" rel="noopener">Gemini Robotics</a> team at <a href="https://deepmind.google/" target="_blank" rel="noopener">Google DeepMind</a> has come to an end. Over these months, I worked on agentic learning with <a href="https://scholar.google.com/citations?user=79k7bGEAAAAJ&hl=en" target="_blank" rel="noopener">Nicolas Heess</a>. I am deeply grateful for his guidance and to the brilliant colleagues I had the privilege to learn from, and I look forward to carrying these experiences into my future research!
+- date: '2026-09-15'
+  title: I was invited as a speaker at the Modeling Uncertainty in Robotic World Models Workshop at CoRL 2026.
+  highlight: true
+  body: >-
+    I am fortunate to be invited as a speaker at the <a href="https://uncertainwm2026.github.io/" target="_blank" rel="noopener">Modeling Uncertainty in Robotic World Models Workshop</a> at <a href="https://2026.corl.org/" target="_blank" rel="noopener">Conference on Robot Learning (CoRL) 2026</a>, together with <a href="https://people.csail.mit.edu/lpk/" target="_blank" rel="noopener">Leslie Kaelbling</a>, <a href="https://irom-lab.princeton.edu/majumdar/" target="_blank" rel="noopener">Anirudha Majumdar</a>, and <a href="https://cindycia.github.io/" target="_blank" rel="noopener">Panpan Cai</a>. The workshop will be held in Austin, United States on November 12, 2026.
+- date: '2026-09-01'
+  title: Three papers were accepted to CoRL 2026.
+  highlight: true
+  body: >-
+    Our papers <a href="/publication/corl2026-2" target="_blank" rel="noopener"><em>EgoHTR: Egocentric 4D Demonstrations of Human Terrain Traversal</em></a>, <a href="/publication/corl2026-1" target="_blank" rel="noopener"><em>ADAPT: Agile Diffusion Action Priors for Robust and Steerable Online Text-Driven Humanoid Control</em></a>, and <a href="/publication/corl2026-3" target="_blank" rel="noopener"><em>Morphology-Conditioned World Model for Cross-Embodiment Quadrupedal Locomotion</em></a> were accepted by <a href="https://www.corl.org/" target="_blank" rel="noopener">Conference on Robot Learning (CoRL) 2026</a>. CoRL 2026 will be held in Austin, United States from November 9 to 12, 2026.
 - date: '2026-04-22'
   title: I gave a talk on Online Reinforcement Learning at ARCAD Lab.
   body: >-
