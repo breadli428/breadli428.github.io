@@ -130,7 +130,7 @@ supervision:
     year_start: 2023
     year_end: ''
     summary: |
-      Supervised 24 master thesis projects across the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
+      Supervised 24 master thesis projects at the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
   - type: Semester Projects
     count: 5
     institution: ETH Zurich
@@ -139,7 +139,7 @@ supervision:
     year_start: 2023
     year_end: ''
     summary: |
-      Supervised 5 semester projects across the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
+      Supervised 5 semester projects at the [Robotic Systems Lab](https://rsl.ethz.ch/) and [Learning & Adaptive Systems Group](https://las.inf.ethz.ch/).
 work:
   - position: Student Researcher
     company_name: Google DeepMind
