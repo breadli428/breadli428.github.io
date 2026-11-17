@@ -3,7 +3,7 @@
   <div class="wrap about-grid">
     <aside class="about-portrait" data-reveal>
       {{ with $a.Resources.GetMatch "avatar*" }}
-        {{ partial "img.html" (dict "res" (.Fill "1200x1200 Center q95") "widths" (slice 300 600 900 1200) "sizes" "300px" "q" 90 "alt" $a.Title) }}
+        {{ partial "img.html" (dict "res" (.Fill "1200x1200 Center q95") "widths" (slice 300 600 900 1200) "sizes" "300px" "alt" $a.Title) }}
       {{ end }}
       <p class="name">{{ $a.Title }}</p>
       <p class="role">{{ $a.Params.role }}</p>

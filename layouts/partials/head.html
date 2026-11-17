@@ -24,8 +24,8 @@
 
 {{- /* Social cards */}}
 {{- $og := "" }}
-{{- with .Resources.GetMatch "featured*" }}{{ $og = (.Resize "1200x webp q80").Permalink }}{{ end }}
-{{- if not $og }}{{ with resources.Get (printf "media/%s" (site.Home.Params.hero.image | default "sequence.png")) }}{{ $og = (.Resize "1200x jpg q80").Permalink }}{{ end }}{{ end }}
+{{- with .Resources.GetMatch "featured*" }}{{ $og = (.Resize "1200x webp q90").Permalink }}{{ end }}
+{{- if not $og }}{{ with resources.Get (printf "media/%s" (site.Home.Params.hero.image | default "sequence.png")) }}{{ $og = (.Resize "1200x jpg q90").Permalink }}{{ end }}{{ end }}
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">

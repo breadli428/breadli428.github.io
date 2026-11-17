@@ -3,7 +3,7 @@
 {{- $w := 0 }}{{ $h := 0 -}}
 {{- with $res -}}
   {{- if not (in (slice "svg" "gif") .MediaType.SubType) -}}
-    {{- $img := .Resize (printf "%dx webp q85" (cond (gt .Width 1600) 1600 .Width)) -}}
+    {{- $img := .Resize (printf "%dx webp q90" (cond (gt .Width 1600) 1600 .Width)) -}}
     {{- $src = $img.RelPermalink }}{{ $w = $img.Width }}{{ $h = $img.Height -}}
   {{- else }}{{ $src = .RelPermalink }}{{ end -}}
 {{- end -}}

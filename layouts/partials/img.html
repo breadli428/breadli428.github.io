@@ -1,6 +1,6 @@
 {{- /* Responsive image from a Hugo resource.
-       Params: res (resource), widths (slice), sizes (string), alt, class, eager (bool), style, q (int, default 78) */ -}}
-{{- $q := $.q | default 78 -}}
+       Params: res (resource), widths (slice), sizes (string), alt, class, eager (bool), style, q (int, default 90) */ -}}
+{{- $q := $.q | default 90 -}}
 {{- $r := .res -}}
 {{- with $r -}}
 {{- if in (slice "svg" "gif") .MediaType.SubType -}}
