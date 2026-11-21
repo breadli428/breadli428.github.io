@@ -1,5 +1,5 @@
 ---
-title: 'Agentic Learning with Gemini Robotics'
+title: 'Agentic Learning for Robot Manipulation with Gemini Robotics'
 authors:
 - admin
 - Leonard Hasenclever
