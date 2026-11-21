@@ -9,7 +9,12 @@ hero:
   eyebrow: Chenhao Li
   title: Embodied Intelligence<br>and Robot Learning.
   subtitle: Doctoral Fellow at ETH AI Center · Student Researcher at Google DeepMind
-  image: sequence.png
+  # Hero images crossfade in this order; the first is also the social-share preview.
+  images:
+    - file: sequence.png
+      alt: Simulated quadruped robots performing agile maneuvers
+    - file: manipulation.webp
+      alt: Bimanual robot arms tidying tools in a workshop
 
 
 # Buttons in the "Let's connect" section.

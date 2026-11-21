@@ -9,9 +9,25 @@
       <a class="btn btn-ghost on-dark" href="{{ "uploads/resume.pdf" | relURL }}" target="_blank" rel="noopener">Download CV</a>
     </div>
   </div>
-  {{ with resources.Get (printf "media/%s" $h.image) }}
-  <div class="hero-media">
-    {{ partial "img.html" (dict "res" . "widths" (slice 800 1280 1920) "sizes" "(max-width: 1440px) 100vw, 1440px" "alt" "Legged robots in motion" "eager" true) }}
+  {{- /* Hero images: `hero.images` (list of {file, alt}), falling back to a single `hero.image`. */ -}}
+  {{- $slides := slice -}}
+  {{- range $item := $h.images | default (slice (dict "file" $h.image "alt" "Legged robots in motion")) -}}
+    {{- with resources.Get (printf "media/%s" $item.file) }}{{ $slides = $slides | append (dict "res" . "alt" ($item.alt | default "")) }}{{ end -}}
+  {{- end -}}
+  {{ with $slides }}
+  <div class="hero-media{{ if gt (len .) 1 }} is-carousel{{ end }}" data-hero-carousel>
+    {{ range $i, $s := . }}
+    <div class="hero-slide{{ if eq $i 0 }} is-active{{ end }}"{{ if ne $i 0 }} aria-hidden="true"{{ end }}>
+      {{ partial "img.html" (dict "res" $s.res "widths" (slice 800 1280 1920) "sizes" "(max-width: 1440px) 100vw, 1440px" "alt" $s.alt "eager" (eq $i 0)) }}
+    </div>
+    {{ end }}
+    {{ if gt (len .) 1 }}
+    <div class="hero-dots" role="group" aria-label="Hero images">
+      {{ range $i, $s := . }}
+      <button class="hero-dot{{ if eq $i 0 }} is-active{{ end }}" type="button" aria-label="Show image {{ add $i 1 }}: {{ $s.alt }}"{{ if eq $i 0 }} aria-current="true"{{ end }}></button>
+      {{ end }}
+    </div>
+    {{ end }}
   </div>
   {{ end }}
 </section>

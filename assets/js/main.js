@@ -66,6 +66,55 @@
   }, { passive: true });
   onScroll();
 
+  /* ---------- Hero carousel ---------- */
+  const carousel = document.querySelector('[data-hero-carousel].is-carousel');
+  if (carousel) {
+    const slides = [...carousel.querySelectorAll('.hero-slide')];
+    const dots = [...carousel.querySelectorAll('.hero-dot')];
+    const interval = 6000;
+    carousel.style.setProperty('--hero-interval', `${interval}ms`);
+    let current = 0;
+    let timer = null;
+    let visible = true;
+
+    const show = (i) => {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((s, j) => {
+        const on = j === current;
+        s.classList.toggle('is-active', on);
+        s.setAttribute('aria-hidden', String(!on));
+        // Load upcoming images ahead of time so the crossfade never shows a blank frame.
+        if (on || j === (current + 1) % slides.length) s.querySelector('img')?.setAttribute('loading', 'eager');
+      });
+      dots.forEach((d, j) => {
+        d.classList.toggle('is-active', j === current);
+        if (j === current) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+    };
+    const stop = () => { clearTimeout(timer); timer = null; };
+    const play = () => {
+      stop();
+      if (reduceMotion || !visible || document.hidden) return;
+      timer = setTimeout(() => { show(current + 1); play(); }, interval);
+    };
+    // Restart the active dot's fill animation when resuming, so it stays in sync with the timer.
+    const restartFill = () => {
+      const d = dots[current];
+      d.classList.remove('is-active'); void d.offsetWidth; d.classList.add('is-active');
+    };
+    const setPaused = (paused) => {
+      carousel.classList.toggle('is-paused', paused);
+      if (paused) stop(); else { restartFill(); play(); }
+    };
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { show(i); play(); }));
+    document.addEventListener('visibilitychange', () => setPaused(document.hidden || !visible));
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; setPaused(!visible || document.hidden); }, { threshold: 0.15 })
+      .observe(carousel);
+    show(0);
+    play();
+  }
+
   /* ---------- Scroll spy for nav + article TOC ---------- */
   const spy = (links, attr) => {
     const map = new Map();

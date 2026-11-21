@@ -451,6 +451,54 @@ main { display: block; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.45) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero carousel: slides stack in one grid cell and crossfade, with a slow zoom on the visible one. */
+.hero-media { display: grid; }
+.hero-slide {
+  grid-area: 1 / 1;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(1);
+  /* Leaving: stay visible under the incoming slide until it has faded in, then hide and reset the zoom. */
+  transition: opacity 0s linear 1.4s, transform 0s linear 1.4s;
+}
+.hero-slide.is-active {
+  opacity: 1; z-index: 1;
+  transform: scale(1.06);
+  transition: opacity 1.4s var(--ease), transform 8s linear;
+}
+.hero-dots {
+  position: absolute; left: 50%; bottom: clamp(14px, 2.4vw, 28px); z-index: 2;
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 12px; border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%);
+}
+.hero-dot {
+  position: relative; overflow: hidden;
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: width 0.5s var(--ease-out), background-color 0.3s var(--ease);
+}
+.hero-dot::before { content: ""; position: absolute; inset: -10px -4px; } /* larger tap target */
+.hero-dot:hover { background: rgba(255, 255, 255, 0.7); }
+.hero-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.hero-dot.is-active { width: 32px; background: rgba(255, 255, 255, 0.35); }
+.hero-dot.is-active::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: #fff;
+  transform-origin: 0 50%;
+  animation: hero-dot-fill var(--hero-interval, 6s) linear both;
+}
+.hero-media.is-paused .hero-dot.is-active::after { animation-play-state: paused; }
+@keyframes hero-dot-fill { from { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-slide.is-active { transform: none; transition: opacity 0.6s var(--ease); }
+  .hero-dot.is-active::after { animation: none; }
 }
 .hero-scroll {
   position: absolute; left: 50%; bottom: clamp(20px, 3vw, 36px); z-index: 2;
