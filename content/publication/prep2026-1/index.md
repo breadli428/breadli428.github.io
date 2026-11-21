@@ -9,13 +9,13 @@ authors:
 - Jingwei Zhang
 - Nicolas Heess
 author_notes:
-- Google DeepMind
-- Google DeepMind
-- Google DeepMind
-- Google DeepMind
-- Google DeepMind
-- Google DeepMind
-- Google DeepMind
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
+- Google DeepMind, United Kingdom
 date: '2026-09-30T00:00:00Z'
 doi: ''
 publishDate: '2017-01-01T00:00:00Z'
