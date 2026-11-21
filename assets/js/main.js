@@ -62,7 +62,7 @@
     }
     if (heroSlides.length > 1) {
       // Shift focus between hero images as the image rises into view: the change runs over 2d of
-      // scrolling, finishing just after the image's centre passes the viewport centre, so the last
+      // scrolling, finishing as the image's centre passes just beyond the viewport centre, so the last
       // image is sharp while it still fills the screen.
       const vh = window.innerHeight;
       const h = heroMedia.offsetHeight;
@@ -70,7 +70,7 @@
       const d = Math.max(h * 0.25, vh * 0.15);
       // Never before a little scrolling, so the first image is seen intact (matters on phones,
       // where the whole image is already on screen at load).
-      const start = Math.max(centre - vh / 2 - 1.75 * d, vh * 0.08);
+      const start = Math.max(centre - vh / 2 - 1.5 * d, vh * 0.08);
       const t = Math.min(1, Math.max(0, (y - start) / (2 * d)));
       const u = t * (heroSlides.length - 1);
       heroSlides.forEach((s, i) => {
