@@ -279,7 +279,7 @@ I am currently a doctoral fellow advised by [Prof. Marco Hutter](https://mavt.et
 
 ### Research
 
-My research interests focus on algorithms that can enable autonomous agents to acquire complex behaviors through learning, especially general-purpose methods that could enable any autonomous system to learn to solve any task. This spans online learning and world modeling.
+My research interests focus on algorithms that can enable autonomous agents to acquire complex behaviors through learning, from whole-body control to dexterous manipulation, especially general-purpose methods that could enable any autonomous system to learn to solve any task. This spans sim-to-real learning, world modeling, and online reinforcement learning.
 
 ### Previously
 
