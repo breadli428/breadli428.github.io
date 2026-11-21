@@ -15,10 +15,10 @@
     {{- with resources.Get (printf "media/%s" $item.file) }}{{ $slides = $slides | append (dict "res" . "alt" ($item.alt | default "")) }}{{ end -}}
   {{- end -}}
   {{ with $slides }}
-  <div class="hero-media" style="--n: {{ len . }}">
-    {{ range $i, $s := . }}
-    <div class="hero-slide" style="--i: {{ $i }}">
-      {{ partial "img.html" (dict "res" $s.res "widths" (slice 800 1280 1920) "sizes" "(max-width: 1440px) 100vw, 1440px" "alt" $s.alt "eager" true) }}
+  <div class="hero-media">
+    {{ range . }}
+    <div class="hero-slide">
+      {{ partial "img.html" (dict "res" .res "widths" (slice 800 1280 1920) "sizes" "(max-width: 1440px) 100vw, 1440px" "alt" .alt "eager" true) }}
     </div>
     {{ end }}
   </div>

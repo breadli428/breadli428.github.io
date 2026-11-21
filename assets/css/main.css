@@ -433,6 +433,7 @@ main { display: block; }
 
 .hero-media {
   --p: 0;
+  display: grid;
   margin: clamp(48px, 7vw, 88px) auto 0;
   width: min(100% - 2 * var(--gutter), 1440px);
   border-radius: calc(var(--radius-l) * (1 - var(--p)));
@@ -454,13 +455,19 @@ main { display: block; }
   z-index: 1;
 }
 
-/* Hero slides: stacked in one grid cell; each later slide fades in as the page scrolls.
-   --fade (0..1, set from JS) runs across all transitions; slide i shows during step i of n-1. */
-.hero-media { display: grid; --fade: 0; }
-.hero-slide { grid-area: 1 / 1; overflow: hidden; }
-.hero-slide + .hero-slide {
-  opacity: clamp(0, calc(var(--fade) * (var(--n) - 1) - (var(--i) - 1)), 1);
-  will-change: opacity;
+/* Focus shift between hero slides, driven from JS while the image crosses mid-viewport:
+   --w (0..1) brings a slide in from soft and slightly enlarged to sharp;
+   --out (0..1) defocuses, dims and pushes in the slide it replaces. */
+.hero-slide {
+  --w: 1; --out: 0;
+  grid-area: 1 / 1; overflow: hidden;
+  filter: blur(calc((1 - var(--w)) * 12px + var(--out) * 10px)) brightness(calc(1 - 0.3 * var(--out)));
+  transform: scale(calc(1 + 0.05 * (1 - var(--w)) + 0.03 * var(--out)));
+}
+.hero-slide + .hero-slide { --w: 0; opacity: var(--w); }
+.hero-media.is-shifting .hero-slide { will-change: filter, transform, opacity; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { filter: none; transform: none; }
 }
 .hero-scroll {
   position: absolute; left: 50%; bottom: clamp(20px, 3vw, 36px); z-index: 2;

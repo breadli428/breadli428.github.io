@@ -48,6 +48,7 @@
   }
 
   const heroMedia = document.querySelector('.hero-media');
+  const heroSlides = heroMedia ? [...heroMedia.querySelectorAll('.hero-slide')] : [];
   let ticking = false;
   const onScroll = () => {
     const y = window.scrollY;
@@ -59,22 +60,30 @@
       const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
       heroMedia.style.setProperty('--p', p.toFixed(3));
     }
-    if (heroMedia) {
-      // Crossfade hero images while the image crosses the middle of the viewport:
-      // the fade runs as its centre moves from d below to d above the viewport centre.
+    if (heroSlides.length > 1) {
+      // Shift focus between hero images while the image crosses the middle of the viewport:
+      // the change runs as its centre moves from d below to d above the viewport centre.
       const vh = window.innerHeight;
       const h = heroMedia.offsetHeight;
       const centre = hero.offsetTop + heroMedia.offsetTop + h / 2;
       const d = Math.max(h * 0.25, vh * 0.15);
       const t = Math.min(1, Math.max(0, (y - (centre - vh / 2 - d)) / (2 * d)));
-      const eased = t * t * (3 - 2 * t); // smoothstep: gentle start and finish
-      heroMedia.style.setProperty('--fade', eased.toFixed(3));
+      const u = t * (heroSlides.length - 1);
+      heroSlides.forEach((s, i) => {
+        if (i === 0) return;
+        const w = Math.min(1, Math.max(0, u - (i - 1)));
+        const e = w * w * (3 - 2 * w); // smoothstep: gentle start and finish
+        s.style.setProperty('--w', e.toFixed(4));
+        heroSlides[i - 1].style.setProperty('--out', e.toFixed(4));
+      });
+      heroMedia.classList.toggle('is-shifting', t > 0 && t < 1);
     }
     ticking = false;
   };
   window.addEventListener('scroll', () => {
     if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
 
   /* ---------- Scroll spy for nav + article TOC ---------- */
