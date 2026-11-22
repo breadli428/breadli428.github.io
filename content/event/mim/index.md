@@ -2,7 +2,7 @@
 title: Reducing Human Efforts for Expert Acquisition in Imitation Learning
 
 event: Research Presentation
-event_url: http://wp.nyu.edu/machinesinmotion/
+event_url: https://robotics.engineering.nyu.edu/group/machines-in-motion
 
 location: Machines in Motion Laboratory, New York University
 address:

@@ -62,7 +62,7 @@ education:
     date_start: 2023-11-01
     date_end: ''
     summary: |
-      [ETH AI Center Doctoral Fellowship](https://ai.ethz.ch/education/phd-and-postdoc-programs/phd-fellowships.html) winner.
+      [ETH AI Center Doctoral Fellowship](https://ai.ethz.ch/research/phd-and-postdoc-programs.html) winner.
     # button:
     #   text: 'Read Thesis'
     #   url: 'https://example.com'
@@ -189,7 +189,7 @@ work:
     date_start: 2022-04-01
     date_end: 2022-12-31
     summary: |
-      Agile motion imitation and intrinsic skill exploration with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius).
+      Agile motion imitation and intrinsic skill exploration with [Prof. Georg Martius](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/distributed-intelligence/team/prof-dr-georg-martius/).
   - position: Research Assistant
     company_name: École polytechnique fédérale de Lausanne (EPFL)
     company_url: 'https://www.epfl.ch/en/'
@@ -283,4 +283,4 @@ My research interests focus on algorithms that can enable autonomous agents to a
 
 ### Previously
 
-I worked on motion representation and active learning methods at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU), and on motion imitation from limited demonstrations and intrinsic skill exploration at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/) with [Prof. Georg Martius](https://al.is.mpg.de/person/gmartius).
+I worked on motion representation and active learning methods at [Massachusetts Institute of Technology (MIT)](https://www.mit.edu/) with [Prof. Sangbae Kim](https://meche.mit.edu/people/faculty/SANGBAE@MIT.EDU), and on motion imitation from limited demonstrations and intrinsic skill exploration at [Max Planck Institute for Intelligent Systems (MPI-IS)](https://is.mpg.de/) with [Prof. Georg Martius](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/distributed-intelligence/team/prof-dr-georg-martius/).
